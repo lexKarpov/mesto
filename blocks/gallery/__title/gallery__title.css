@@ -1,4 +1,7 @@
 .gallery__title{
   color: #000;
-  margin: 25px auto 31px 21px
+  margin: 20px auto 26px 21px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
 }
