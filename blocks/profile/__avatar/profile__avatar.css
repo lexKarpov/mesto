@@ -3,3 +3,10 @@
   border-radius: 50%;
   margin-right: 30px;
 }
+
+@media all and (max-width: 495px) {
+  .profile__avatar{
+    margin: 0 0 22px 0;
+
+  }
+}

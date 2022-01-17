@@ -1,0 +1,37 @@
+.popup__window{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-width: 430px;
+  /* height: max-content; */
+  max-height: max-content;
+  margin: 20vh auto;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 34px 36px 37px 37px;
+}
+
+@media all and (max-width:730px) {
+  .popup__window{
+    max-width: 330px;
+  }
+}
+
+@media all and (max-width:540px) {
+  .popup__window{
+    max-width: 280px;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .popup__window{
+    padding: 25px 22px 75px 22px;
+  }
+}
+
+@media all and (max-width: 352px) {
+  .popup__window{
+    margin: 20vh 19px;
+  }
+}

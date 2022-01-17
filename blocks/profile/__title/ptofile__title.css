@@ -6,3 +6,13 @@
   letter-spacing: .6px;
   margin: 0;
 }
+
+
+@media all and (max-width: 495px) {
+  .ptofile__title{
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+    margin-left: 27px;
+  }
+}

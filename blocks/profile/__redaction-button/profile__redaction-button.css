@@ -1,0 +1,9 @@
+.profile__redaction-button{
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  max-height: 25px;
+  align-self: center;
+  transition: .6s;
+  border: none;
+}

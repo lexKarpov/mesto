@@ -1,3 +1,11 @@
 .gallery__like{
+  width: 24px;
+  height: 24px;
   margin-right: 20px;
+  transition: .6s;
+  align-self: center;
+}
+
+.gallery__like:hover{
+  fill: red;
 }

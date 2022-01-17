@@ -1,0 +1,13 @@
+.popup__activity{
+  margin: 0 0 35px 0;
+  width: 100%;
+  padding-bottom: 13px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media all and (max-width: 400px) {
+  .popup__activity{
+    margin-bottom: 45px;
+  }
+}

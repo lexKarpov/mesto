@@ -1,3 +1,12 @@
 .header__logo{
   padding-bottom: 41px;
 }
+
+@media all and (max-width: 320px) {
+  .header__logo{
+    width: 103px;
+    height: 24px;
+    padding-bottom: 30px;
+    margin-left: 29px;
+  }
+}

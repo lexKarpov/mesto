@@ -1,0 +1,9 @@
+.profile__setting-image{
+  max-width: 24px;
+}
+
+@media all and (max-width: 320px) {
+  .profile__setting-image{
+    max-width: 18px;
+  }
+}

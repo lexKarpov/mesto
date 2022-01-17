@@ -1,4 +1,11 @@
 .content{
-  width: 880px;
+  padding: 0 19px;
+  width: 960px;
   box-sizing: border-box;
+}
+
+@media all and (max-width: 320px) {
+  .content{
+    padding: 0;
+  }
 }

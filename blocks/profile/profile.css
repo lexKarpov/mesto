@@ -3,3 +3,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+@media  all and (max-width: 731px) {
+  .profile{
+    flex-direction: column;
+  }
+}
