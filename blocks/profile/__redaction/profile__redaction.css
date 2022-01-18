@@ -1,6 +1,6 @@
 .profile__redaction{
   display: flex;
-  gap: 18px
+  gap: 18px;
 }
 
 @media all and (max-width: 320px) {

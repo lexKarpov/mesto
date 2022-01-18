@@ -5,12 +5,16 @@
   max-width: 370px;
 }
 
+@media all and (max-width:495px) {
+  .profile__subtitle{
+    text-align: center;
+  }
+}
 
 @media all and (max-width:320px) {
   .profile__subtitle{
     font-size: 14px;
     line-height: 17px;
-    text-align: center;
     margin-top: 8px;
   }
 }
