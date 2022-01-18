@@ -5,7 +5,7 @@ let popupSubmit = document.querySelector('.popup__submit')
 let nameNewText = '';
 let jobNewText = '';
 
-let ptofileTitle = document.querySelector('.ptofile__title');
+let ptofileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 
 
@@ -13,12 +13,12 @@ popupOpen.addEventListener('click', () => popup.classList.add('popup_opened'));
 popupClose.addEventListener('click', () => popup.classList.remove('popup_opened'));
 popupSubmit.addEventListener('click', () => popup.classList.remove('popup_opened'));
 
-
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__admin') // Воспользуйтесь методом querySelector
 
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__name')// Воспользуйтесь инструментом .querySelector()
+console.log(nameInput.value);
 let jobInput = document.querySelector('.popup__activity')// Воспользуйтесь инструментом .querySelector()
 
 // Обработчик «отправки» формы, хотя пока
