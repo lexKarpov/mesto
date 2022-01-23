@@ -5,6 +5,15 @@ let popupSubmit = document.querySelector('.popup__submit')
 let nameNewText = '';
 let jobNewText = '';
 
+//for like 
+let like = document.querySelectorAll('.gallery__like');
+
+for(let i = 0; i < like.length; i++){
+  // like[i].src = '../images/Union.svg'
+  like[i].addEventListener('click', ()=> like[i].src = '../images/Union.svg')
+}
+
+
 let ptofileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 
