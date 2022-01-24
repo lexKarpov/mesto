@@ -1,10 +1,23 @@
 .content{
-  padding: 0 19px;
-  width: 960px;
-  box-sizing: border-box;
+  padding: 0;
+  margin: 0 auto;
+  width: 880px;
+  /* box-sizing: border-box; */
 }
 
-@media all and (max-width: 320px) {
+@media all and (max-width: 884px) {
+  .content{
+    padding: 0 27px;
+  }
+}
+
+@media all and (max-width: 538px) {
+  .content{
+    padding: 0 10px;
+  }
+}
+
+@media all and (max-width: 420px) {
   .content{
     padding: 0;
   }

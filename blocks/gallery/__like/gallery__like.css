@@ -4,8 +4,11 @@
   margin-right: 20px;
   transition: .6s;
   align-self: center;
+  background: url(../../../images/like.svg) no-repeat center;
+  border: none;
 }
 
 .gallery__like:hover{
-  fill: red;
+  opacity: 0.5;
+  cursor: pointer;
 }

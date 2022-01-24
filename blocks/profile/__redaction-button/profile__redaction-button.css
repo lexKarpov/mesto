@@ -2,8 +2,25 @@
   margin: 0;
   padding: 0;
   background-color: #000;
-  max-height: 25px;
+  width: 24px;
+  height: 24px;
   align-self: center;
   transition: .6s;
   border: none;
+  background-image: url(../../../images/Edit-Button.svg);
+  background-size: 24px 24px;
+  background-position: center;
+  color: aliceblue;
+}
+
+@media all and (max-width: 320px) {
+  .profile__redaction-button{
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.profile__redaction-button:hover{
+  opacity: 0.6;
+  cursor: pointer;
 }

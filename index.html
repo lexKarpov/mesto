@@ -20,19 +20,14 @@
           <img src="./images/avatar.jpg" alt="аватарка" class="profile__avatar">
           <div class="profile__text">
             <div class="profile__redaction">
-              <h1 class="profile__title ellipsis">Жак-Ив Кусто</h1>
-              <button class="profile__redaction-button hovers">
-                <img src="./images/Edit-Button.svg" alt="кнопка редактирования профиля" class="profile__setting-image">
+              <h1 class="profile__title ellipsis"></h1>
+              <button type="button" class="profile__redaction-button">
               </button>
-
             </div>
-
-            <p class="profile__subtitle ellipsis">Исследователь океана</p>
+            <p class="profile__subtitle ellipsis"></p>
           </div>
         </div>
-        <div class="profile__button hovers">
-          <img src="./images/add.png" alt="кнопка добавления профиля" class="profile__add">
-        </div>
+        <button type="button" class="profile__button"></button>
       </section>
       <section class="gallery">
         <ul class="cards">
@@ -40,65 +35,67 @@
             <img src="./images/cards/Mask-3.jpg" alt="карачаевск" class="gallery__img">
             <div class="gallery__description">
               <h2 class="gallery__title ellipsis">Карачаевск на камчатке</h2>
-              <img src="./images/like.svg" alt="нравится" class="gallery__like hovers gallery__like_active">
+              <button type="button" class="gallery__like gallery__like_active"></button>
             </div>
           </li>
           <li class="gallery__card">
             <img src="./images/cards/Mask-1.jpg" alt="Эльбрус" class="gallery__img">
             <div class="gallery__description">
               <h2 class="gallery__title">Гора Эльбрус</h2>
-              <img src="./images/like.svg" alt="нравится" class="gallery__like hovers gallery__like_active">
+              <button type="button" class="gallery__like gallery__like_active"></button>
             </div>
           </li>
           <li class="gallery__card">
             <img src="./images/cards/Mask-2.jpg" alt="Домбай" class="gallery__img">
             <div class="gallery__description">
               <h2 class="gallery__title">Домбай</h2>
-              <img src="./images/like.svg" alt="нравится" class="gallery__like hovers gallery__like_active">
+              <button type="button" class="gallery__like gallery__like_active"></button>
             </div>
           </li>
           <li class="gallery__card">
             <img src="./images/cards/Mask-1.jpg" alt="Эльбрус" class="gallery__img">
             <div class="gallery__description">
               <h2 class="gallery__title">Гора Эльбрус</h2>
-              <img src="./images/like.svg" alt="нравится" class="gallery__like hovers gallery__like_active">
+              <button type="button" class="gallery__like gallery__like_active"></button>
             </div>
           </li>
           <li class="gallery__card">
             <img src="./images/cards/Mask-2.jpg" alt="Домбай" class="gallery__img">
             <div class="gallery__description">
               <h2 class="gallery__title">Домбай</h2>
-              <img src="./images/like.svg" alt="нравится" class="gallery__like hovers gallery__like_active">
+              <button type="button" class="gallery__like gallery__like_active"></button>
             </div>
           </li>
           <li class="gallery__card">
             <img src="./images/cards/Mask-3.jpg" alt="Карачаевск" class="gallery__img">
             <div class="gallery__description">
               <h2 class="gallery__title">Карачаевск</h2>
-              <img src="./images/like.svg" alt="нравится" class="gallery__like hovers gallery__like_active">
+              <button type="button" class="gallery__like gallery__like_active"></button>
             </div>
           </li>
         </ul>
       </section>
 
-      <div class="popup">
-        <div class="popup__window">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <form class="popup__admin">
-            <input type="text" value="жак кусто" class="popup__name form-border">
-            <input type="text" value="Исследователь океана" class="popup__activity form-border">
-            <input type="submit" value="Сохранить" class="popup__submit hovers">
-          </form>
-          <img src="./images/Close-Icon.png" alt="" class="popup__button-close hovers">
-        </div>
-      </div>
+
     </main>
     <footer class="footer">
       <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
+    <div class="popup">
+      <div class="popup__window">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form name="form-fill" class="popup__admin">
+          <input type="text" name="name" value="жак кусто" class="popup__input popup__input_field_name">
+          <input type="text" name="activity" value="Исследователь океана"
+            class="popup__input popup__input_field_activity">
+          <input type="submit" value="Сохранить" class="popup__submit">
+        </form>
+        <button type="button" class="popup__button-close"></button>
+      </div>
+    </div>
   </div>
 
-  <script src="scripts/script.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 
 </html>
