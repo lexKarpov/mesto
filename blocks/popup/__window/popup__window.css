@@ -29,7 +29,7 @@
 
 @media all and (max-width: 400px) {
   .popup__window{
-    padding: 25px 22px 75px 22px;
+    padding: 25px 22px 25px 22px;
     margin: 123px 19px;
   }
 }

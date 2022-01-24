@@ -8,11 +8,20 @@
 }
 
 
-@media all and (max-width: 495px) {
+@media all and (max-width: 540px) {
+  .profile__title{
+    font-size: 27px;
+    line-height: 33px;
+    
+    /* margin-left: 27px; */
+    width: 199px;
+  }
+}
+
+@media all and (max-width: 494px) {
   .profile__title{
     font-size: 27px;
     line-height: 33px;
     text-align: center;
-    margin-left: 27px;
   }
 }

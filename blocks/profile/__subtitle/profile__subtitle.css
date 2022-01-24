@@ -7,21 +7,22 @@
 
 @media all and (max-width:553px) {
   .profile__subtitle{
-    max-width: 282px;
+    max-width: 262px;
   }
 }
 
 @media all and (max-width:495px) {
   .profile__subtitle{
     text-align: center;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 
 @media all and (max-width:320px) {
   .profile__subtitle{
-    font-size: 14px;
-    line-height: 17px;
+
     margin-top: 8px;
-    max-width: 282px;
+    
   }
 }

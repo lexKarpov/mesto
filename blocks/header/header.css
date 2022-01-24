@@ -6,7 +6,7 @@
   margin: 45px 0 40px 0;
 }
 
-@media all and (max-width: 320px) {
+@media all and (max-width: 420px) {
   .header{
     margin: 28px 0 42px 0;
   }

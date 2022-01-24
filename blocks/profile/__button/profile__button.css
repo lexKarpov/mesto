@@ -9,6 +9,7 @@
   color: #000;
   transition: .6s;
   background: url(../../../images/Vector2.svg) no-repeat center #000;
+  background-size: 16px 16px;
   /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
 }
 .profile__button:hover{
@@ -18,7 +19,7 @@
 
 @media all and (max-width: 731px) {
   .profile__button{
-    margin: 35px auto 0 auto;
-    width: 87%;
+    margin: 31px auto 0 auto;
+    width: 88%;
   }
 }

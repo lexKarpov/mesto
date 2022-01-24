@@ -3,8 +3,9 @@
   gap: 18px;
 }
 
-@media all and (max-width: 320px) {
+@media all and (max-width: 468px) {
   .profile__redaction{
-    gap: 10px;
+    position: relative;
+    gap:1px;
   }
 }

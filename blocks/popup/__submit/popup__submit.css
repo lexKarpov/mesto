@@ -17,3 +17,11 @@
   opacity: 0.8;
   cursor: pointer;
 }
+
+@media all and (max-width: 400px) {
+  .popup__submit{
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+}

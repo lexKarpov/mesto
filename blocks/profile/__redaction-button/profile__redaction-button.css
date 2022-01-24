@@ -13,10 +13,21 @@
   color: aliceblue;
 }
 
+@media all and (max-width: 468px) {
+  .profile__redaction-button{
+    position: absolute;
+    right: -30px;
+    top: 4px;
+  }
+}
+
 @media all and (max-width: 320px) {
   .profile__redaction-button{
     width: 18px;
     height: 18px;
+    background-size: 18px 18px;
+    right: -23px;
+    top: 7px;
   }
 }
 
