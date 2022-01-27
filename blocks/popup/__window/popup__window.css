@@ -3,15 +3,11 @@
   position: relative;
   flex-direction: column;
   width: 430px;
-  /* height: max-content; */
-  /* max-height: max-content; */
-  /* margin: 36vh 35.8vw; */
   justify-content: center;
   background-color: #fff;
   border-radius: 10px;
   padding: 34px 36px 37px 36px;
   box-sizing: border-box;
-  /* margin-top: 200px; */
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -30,6 +26,5 @@
 @media all and (max-width: 400px) {
   .popup__window{
     padding: 25px 22px 25px 22px;
-    /* margin: 123px 19px; */
   }
 }
