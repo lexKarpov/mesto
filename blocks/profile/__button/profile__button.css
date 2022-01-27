@@ -14,7 +14,7 @@
 }
 .profile__button:hover{
   cursor: pointer;
-  opacity: 0.25;
+  opacity: 0.6;
 }
 
 @media all and (max-width: 731px) {

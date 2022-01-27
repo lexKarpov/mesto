@@ -21,7 +21,7 @@
           <div class="profile__text">
             <div class="profile__redaction">
               <h1 class="profile__title ellipsis"></h1>
-              <button type="button" class="profile__redaction-button">
+              <button aria-label="открыть редактор" type="button" class="profile__redaction-button">
               </button>
             </div>
             <p class="profile__subtitle ellipsis"></p>
@@ -84,10 +84,9 @@
     <div class="popup">
       <div class="popup__window">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="form-fill" class="popup__admin">
-          <input type="text" name="name" value="жак кусто" class="popup__input popup__input_field_name">
-          <input type="text" name="activity" value="Исследователь океана"
-            class="popup__input popup__input_field_activity">
+        <form name="form-fill" class="popup__form-redaction-profile">
+          <input type="text" name="name" class="popup__input popup__input_field_name">
+          <input type="text" name="activity" class="popup__input popup__input_field_activity">
           <input type="submit" value="Сохранить" class="popup__submit">
         </form>
         <button type="button" class="popup__button-close"></button>
