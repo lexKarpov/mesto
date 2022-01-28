@@ -3,23 +3,22 @@ let popup = document.querySelector('.popup'); //нашли элемент, ко�
 let popupClose = document.querySelector('.popup__button-close') //нашли крестик
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
-let profileSubtitlePopup = document.querySelector('.popup__form-redaction-profile');
+let profileSubtitlePopup = document.querySelector('.popup__admin');
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__input_field_name')// Воспользуйтесь инструментом .querySelector()
 let jobInput = document.querySelector('.popup__input_field_activity')// Воспользуйтесь инструментом .querySelector()
+// Находим форму в DOM
+let formElement = document.querySelector('.popup__admin') // Воспользуйтесь методом querySelector
 
-popupOpen.addEventListener('click', function () {
+
+function openPopup() {
   popup.classList.add('popup_opened');
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-});
-popupClose.addEventListener('click', popupCloser);
-
-// Находим форму в DOM
-let formElement = document.querySelector('.popup__form-redaction-profile') // Воспользуйтесь методом querySelector
+}
 
 function popupCloser() {
-  document.querySelector('.popup').classList.remove('popup_opened')
+  popup.classList.remove('popup_opened')
 }
 
 function formSubmitHandler(evt) {
@@ -30,9 +29,5 @@ function formSubmitHandler(evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
-
-// function preLoadText() {
-//   profileTitle.textContent = 'Жак-Ив Кусто'
-//   profileSubtitle.textContent = 'Исследователь океана'
-// }
-// preLoadText()
+popupClose.addEventListener('click', popupCloser);
+popupOpen.addEventListener('click', openPopup);
