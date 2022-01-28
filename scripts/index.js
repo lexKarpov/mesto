@@ -7,14 +7,12 @@ let profileSubtitlePopup = document.querySelector('.popup__form-redaction-profil
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__input_field_name')// Воспользуйтесь инструментом .querySelector()
 let jobInput = document.querySelector('.popup__input_field_activity')// Воспользуйтесь инструментом .querySelector()
-profileTitle.textContent = 'Жак-Ив Кусто';
-profileSubtitle.textContent = 'Исследователь океана'
 
 popupOpen.addEventListener('click', function () {
   popup.classList.add('popup_opened');
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-}); 
+});
 popupClose.addEventListener('click', popupCloser);
 
 // Находим форму в DOM
