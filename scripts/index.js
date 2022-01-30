@@ -9,6 +9,55 @@ let nameInput = document.querySelector('.popup__input_field_name')// Воспо�
 let jobInput = document.querySelector('.popup__input_field_activity')// Воспользуйтесь инструментом .querySelector()
 // Находим форму в DOM
 let formElement = document.querySelector('.popup__admin') // Воспользуйтесь методом querySelector
+let templateGallery = document.querySelector('.card-template').content
+let cards = document.querySelector('.cards')
+
+
+
+// console.log(galleryImages);
+
+// galleryList.forEach(el=>el.addEventListener('click', openGalleryImage))
+// Массив с фото 
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+function galleryLoad(){
+
+  for(let i = 0; i < initialCards.length; i++){
+    let tempClone = templateGallery.cloneNode(true);
+    let galleryTitle = tempClone.querySelector('.gallery__title')
+    let galleryImages = tempClone.querySelector('.gallery__img')
+    cards.appendChild(tempClone)
+    galleryTitle.textContent = initialCards[i].name
+    galleryTitle.classList.add('ellipsis')
+    galleryImages.src = initialCards[i].link
+  }
+}
+galleryLoad()
 
 
 function openPopup() {
@@ -27,6 +76,15 @@ function formSubmitHandler(evt) {
   profileSubtitle.textContent = jobInput.value;
   popupCloser();
 }
+
+
+
+
+
+
+
+
+
 
 formElement.addEventListener('submit', formSubmitHandler);
 popupClose.addEventListener('click', popupCloser);
