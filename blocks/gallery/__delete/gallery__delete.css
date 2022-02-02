@@ -1,0 +1,15 @@
+.gallery__delete{
+  width: 18px;
+  height: 29px;
+  transition: .6s;
+  background: url(../../../images/delete.png) no-repeat center;
+  border: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.gallery__delete:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}

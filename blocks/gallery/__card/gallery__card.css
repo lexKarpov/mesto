@@ -5,6 +5,7 @@
   margin: 0 auto;
   max-width: 282px;
   object-fit: cover;
+  position: relative;
 }
 
 

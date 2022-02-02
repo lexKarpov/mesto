@@ -1,0 +1,9 @@
+.gallery__like_active{
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+  transition: .6s;
+  align-self: center;
+  background: url(../../../../images/Union.svg) no-repeat center;
+  border: none;
+}

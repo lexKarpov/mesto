@@ -1,0 +1,11 @@
+.popup__figcaption{
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 10px;
+}
+
+@media all and (max-width: 635px) {
+  .popup__figcaption{
+    margin-top: 5px;
+  }
+}

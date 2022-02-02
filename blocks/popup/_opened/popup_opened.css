@@ -2,4 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation-duration: .3s;
+  animation-name: view;
+  width: 100vw;
+    display: grid;
+  grid-template-columns: 1fr minmax(200px, max-content) 1fr;
+  grid-template-rows: 1fr minmax(200px, 80vh) 1fr;
+}
+
+@keyframes view {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

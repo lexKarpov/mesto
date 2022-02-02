@@ -1,0 +1,23 @@
+.popup__window-wrap{
+  display: grid;
+  /* grid-template-columns: 1fr minmax(200px, max-content) 1fr;
+  grid-template-rows: minmax(200px, 80vh); */
+  position: relative;
+  margin: 0 50px;
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+@media screen and (max-width: 800px) {
+  .popup__window-wrap{
+    margin: 0 40px;
+  }
+}
+
+
+/* .popup__window-wrap{
+  display: grid;
+  grid-template-columns: minmax(200px, 80vw);
+  grid-template-rows: minmax(200px, 80vh);
+
+} */
