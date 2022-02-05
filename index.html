@@ -31,47 +31,44 @@
       </section>
       <section class="gallery">
         <ul class="cards">
+
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+
+    <div class="popup popup_type_text-form">
       <div class="popup__window">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profile-text-redactor" class="popup__admin">
-          <input type="text" name="name" class="popup__input popup__input_field_name">
-          <input type="text" name="activity" class="popup__input popup__input_field_activity">
+        <form name="profile-text-redactor" class="popup__admin popup__admin_type_text">
+          <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_field_name">
+          <input type="text" placeholder="Деятельность" name="activity" class="popup__input popup__input_field_activity">
           <input type="submit" value="Сохранить" class="popup__submit">
         </form>
-        <button type="button" class="popup__button-close"></button>
+        <button type="button" class="popup__button-close popup__button-close_type_text-form"></button>
       </div>
     </div>
 
-    <div class="popup">
+    <div class="popup popup_type_image-form">
       <div class="popup__window">
         <h2 class="popup__title">Новое место</h2>
-        <form name="profile-image-redactor" class="popup__admin">
+        <form name="profile-image-redactor" class="popup__admin popup__admin_type_image">
           <input type="text" placeholder="Название" name="name-img" class="popup__input popup__input_field_name-img">
           <input type="text" placeholder="Ссылка на картинку" name="link" class="popup__input popup__input_field_link">
           <input type="submit" value="Сохранить" class="popup__submit">
         </form>
-        <button type="button" class="popup__button-close"></button>
+        <button type="button" class="popup__button-close popup__button-close_type_image-form"></button>
       </div>
     </div>
 
-    <div class="popup">
-
+    <div class="popup popup_type_image">
       <figure class="popup__window-wrap">
         <img src="#" alt="фото крупным планом" class="popup__image">
         <figcaption class="popup__figcaption"></figcaption>
-        <button type=" button" class="popup__button-close"></button>
+        <button type=" button" class="popup__button-close popup__button-close_type_image"></button>
       </figure>
-
-
-
-
     </div>
   </div>
 
@@ -85,7 +82,7 @@
       </div>
     </li>
   </template>
-
+  <script src="scripts/array.js"></script>
   <script src="scripts/index.js"></script>
 </body>
 
