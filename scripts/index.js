@@ -14,7 +14,6 @@ const closeImage = document.querySelector('.popup__button-close_type_image')
 //-----------------------------------------------------------------------------------
 
 //ФОРМА--------------------------------------------------------------------
-const formElement = document.querySelectorAll('.popup__admin')
 const formElementText = document.querySelector('.popup__admin_type_text')
 const formElementImage = document.querySelector('.popup__admin_type_image')
 //-------------------------------------------------------------------------
@@ -76,7 +75,7 @@ function openPopupImage(name, link){
   const caption = popupTypeImage.querySelector('.popup__figcaption')
   img.src = link
   caption.textContent = name
-  closeImage.addEventListener('click', ()=> closePopup(popupTypeImage))
+  
   openPopup(popupTypeImage)
 }
 //----------------------------------------------------------------
@@ -102,8 +101,7 @@ function openPopupText(pop) {
   openPopup(pop)
   nameInput.value = profileTitle.textContent
   jobInput.value = profileSubtitle.textContent
-  closeTextForm.addEventListener('click', ()=> closePopup(popupTypeTextForm))
-  formElementText.addEventListener('submit', formSubmitHandlerText);
+  
 }
 function formSubmitHandlerImage(evt) {
   evt.preventDefault();
@@ -117,13 +115,15 @@ function openPopupImageForm(pop) {
   openPopup(pop)
   popupInputImgTitle.value = ''
   popupInputImgLink.value = ''
-  closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
-  formElementImage.addEventListener('submit', formSubmitHandlerImage)
+  
 }
 
-
-//СЛУШАТЕЛИ ДЛЯ РЕДАКТИРОВАНИЯ ПРОФИЛЯ
-
+//СЛУШАТЕЛИ
 popupOpenTextRedactor.addEventListener('click', ()=> openPopupText(popupTypeTextForm))
 buttonImageRedactor.addEventListener('click', ()=>openPopupImageForm(popupTypeImageForm))
 
+closeImage.addEventListener('click', ()=> closePopup(popupTypeImage))
+closeTextForm.addEventListener('click', ()=> closePopup(popupTypeTextForm))
+formElementText.addEventListener('submit', formSubmitHandlerText);
+closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
+formElementImage.addEventListener('submit', formSubmitHandlerImage)
