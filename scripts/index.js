@@ -37,24 +37,32 @@ const popupInputImgLink = document.querySelector('.popup__input_field_link')
 //-------------------------------------------------------------------------------
 
 //ОВЕРЛЭЙ e.addEventListener('keydown', (evt)=>console.log(evt)))
-const overlayClose = document.querySelector('.popup')
+// const overlayClose = document.querySelectorAll('.popup')
 // overlayClose.forEach((e)=>e.addEventListener('click', (evt)=>{
 //     if(evt.target.classList.contains('popup')){
 //       closePopup(e)
 //     }
-//     console.log(evt)
 // }
 // ))
-document.addEventListener('keydown', (evt)=>{
-  console.log('sdf')
+function escapeCloser(evt){
+  if(evt.key === 'Escape'){
+    closePopup(popupTypeTextForm)
+    closePopup(popupTypeImageForm)
+    closePopup(popupTypeImage)
   }
+}
+function closePopupClickOverlay(evt, pop) {
+  if(evt.target.classList.contains('popup')){
+    closePopup(pop)
+  }
+}
 
-)
 
 initialCards.forEach(el => renderCard(createCard(el.name, el.link), cards))
 //ОТКРЫТЬ ПОПАП-----------------------
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', (evt)=> closePopupClickOverlay(evt, popup))
 }
 //------------------------------------
 //ЗАКРЫТЬ ПОПАП---------------------------
@@ -142,3 +150,6 @@ closeTextForm.addEventListener('click', ()=> closePopup(popupTypeTextForm))
 formElementText.addEventListener('submit', formSubmitHandlerText);
 closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
 formElementImage.addEventListener('submit', formSubmitHandlerImage)
+//СЛУШАТЕЛЬ ЗАКРЫТИЯ ПО КНОПКЕ ESCAPE------------------
+document.addEventListener('keydown', escapeCloser)
+//-----------------------------------------------------
