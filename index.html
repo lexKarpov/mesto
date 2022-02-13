@@ -43,8 +43,8 @@
       <div class="popup__window">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form name="profile-text-redactor" class="popup__admin popup__admin_type_text">
-          <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_field_name">
-          <input type="text" placeholder="Деятельность" name="activity" class="popup__input popup__input_field_activity">
+          <input type="text" placeholder="Имя" name="name" minlength="2" maxlength="40" class="popup__input popup__input_field_name">
+          <input type="text" placeholder="Деятельность" minlength="2" maxlength="200" name="activity" class="popup__input popup__input_field_activity">
           <input type="submit" value="Сохранить" class="popup__submit">
         </form>
         <button type="button" class="popup__button-close popup__button-close_type_text-form"></button>
@@ -55,8 +55,8 @@
       <div class="popup__window">
         <h2 class="popup__title">Новое место</h2>
         <form name="profile-image-redactor" class="popup__admin popup__admin_type_image">
-          <input type="text" placeholder="Название" name="name-img" class="popup__input popup__input_field_name-img">
-          <input type="text" placeholder="Ссылка на картинку" name="link" class="popup__input popup__input_field_link">
+          <input type="text" placeholder="Название" name="name-img" minlength="2" maxlength="30" class="popup__input popup__input_field_name-img">
+          <input type="url" placeholder="Ссылка на картинку" name="link" class="popup__input popup__input_field_link">
           <input type="submit" value="Сохранить" class="popup__submit">
         </form>
         <button type="button" class="popup__button-close popup__button-close_type_image-form"></button>
