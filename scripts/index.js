@@ -114,16 +114,18 @@ function deleteCard(card) {
 }
 
 // ПО НАЖАТИЮ НА "ОТПРАВИТЬ (ТЕКСТ)"
-function formSubmitHandlerText(evt) {
-  evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-  closePopup(popupTypeTextForm);
-}
+// function formSubmitHandlerText(evt) {
+//   evt.preventDefault();
+//   profileTitle.textContent = nameInput.value;
+//   profileSubtitle.textContent = jobInput.value;
+//   closePopup(popupTypeTextForm);
+// }
 function openPopupText(pop) {
   openPopup(pop)
-  nameInput.value = profileTitle.textContent
-  jobInput.value = profileSubtitle.textContent
+  nameInput.placeholder = profileTitle.textContent
+  jobInput.placeholder = profileSubtitle.textContent
+  nameInput.value = ''
+  jobInput.value = ''
 }
 
 function formSubmitHandlerImage(evt) {
@@ -147,7 +149,7 @@ buttonImageRedactor.addEventListener('click', ()=>openPopupImageForm(popupTypeIm
 
 closeImage.addEventListener('click', ()=> closePopup(popupTypeImage))
 closeTextForm.addEventListener('click', ()=> closePopup(popupTypeTextForm))
-formElementText.addEventListener('submit', formSubmitHandlerText);
+// formElementText.addEventListener('submit', formSubmitHandlerText);
 closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
 formElementImage.addEventListener('submit', formSubmitHandlerImage)
 //СЛУШАТЕЛЬ ЗАКРЫТИЯ ПО КНОПКЕ ESCAPE------------------
