@@ -20,7 +20,7 @@ const formElementImage = document.querySelector('.popup__admin_type_image')
 
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
-const profileSubtitlePopup = document.querySelector('.popup__admin');
+// const profileSubtitlePopup = document.querySelector('.popup__admin');
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.popup__input_field_name')
 const jobInput = document.querySelector('.popup__input_field_activity')
@@ -35,21 +35,10 @@ const buttonImageRedactor = document.querySelector('.profile__button')
 const popupInputImgTitle = document.querySelector('.popup__input_field_name-img')
 const popupInputImgLink = document.querySelector('.popup__input_field_link')
 //-------------------------------------------------------------------------------
-
-//ОВЕРЛЭЙ e.addEventListener('keydown', (evt)=>console.log(evt)))
-// const overlayClose = document.querySelectorAll('.popup')
-// overlayClose.forEach((e)=>e.addEventListener('click', (evt)=>{
-//     if(evt.target.classList.contains('popup')){
-//       closePopup(e)
-//     }
-// }
-// ))
+initialCards.forEach(el => renderCard(createCard(el.name, el.link), cards))
 function escapeCloser(evt, pop){
   if(evt.key === 'Escape'){
-
     closePopup(pop)
-    // closePopup(popupTypeImageForm)
-    // closePopup(popupTypeImage)
   }
 }
 function closePopupClickOverlay(evt, pop) {
@@ -59,7 +48,6 @@ function closePopupClickOverlay(evt, pop) {
 }
 
 
-initialCards.forEach(el => renderCard(createCard(el.name, el.link), cards))
 //ОТКРЫТЬ ПОПАП-----------------------
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -85,7 +73,6 @@ function createCard(name, link){
   galleryTitle.textContent = name;
   galleryTitle.classList.add('ellipsis');
   galleryImages.src = link;
-  //ADD EVENT LISTENER
   const clickImage = card.querySelector('.gallery__img')
   const like = card.querySelector('.gallery__like');
   const elem = card.querySelector('.gallery__card');
@@ -101,7 +88,6 @@ function openPopupImage(name, link){
   img.src = link
   caption.textContent = name
   openPopup(popupTypeImage)
-  // popup.addEventListener('click', closePopup())
 }
 //----------------------------------------------------------------
 
@@ -118,12 +104,12 @@ function deleteCard(card) {
 // ПО НАЖАТИЮ НА "ОТПРАВИТЬ (ТЕКСТ)"
 function formSubmitHandlerText(evt) {
   evt.preventDefault();
+
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
-  // formElementText.reset();
   closePopup(popupTypeTextForm);
-  // enableValidation()
-  // console.log(formElementText.checkValidity)
+
+
 }
 function openPopupText(pop) {
   openPopup(pop)
@@ -131,20 +117,18 @@ function openPopupText(pop) {
   jobInput.placeholder = profileSubtitle.textContent
   nameInput.value = ''
   jobInput.value = ''
+  // console.log(formElementText.checkValidity())
 }
 
-function formSubmitHandlerImage(evt, form) {
+function formSubmitHandlerImage(evt) {
   evt.preventDefault();
-
+  console.log(formElementImage.checkValidity())
     const name = popupInputImgTitle.value
     const link = popupInputImgLink.value
     renderCard(createCard(name, link), cards)
     closePopup(popupTypeImageForm);
-    // form.reset()
-  
+    formElementImage.reset()
 
-  // formElementImage.reset();
-  // enableValidation()
 }
 
 function openPopupImageForm(pop) {
@@ -163,8 +147,7 @@ closeTextForm.addEventListener('click', ()=> closePopup(popupTypeTextForm))
 formElementText.addEventListener('submit', formSubmitHandlerText);
 closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
 formElementImage.addEventListener('submit', formSubmitHandlerImage)
-//СЛУШАТЕЛЬ ЗАКРЫТИЯ ПО КНОПКЕ ESCAPE------------------
 
-//-----------------------------------------------------
 
 enableValidation()
+

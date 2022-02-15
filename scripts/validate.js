@@ -1,16 +1,6 @@
-
-// const formSubmit = (evt, form)=>{
-//   evt.preventDefault();
-//   console.log(form)
-//   if (form.checkValidity()) {
-//     // form.addEventListener('submit', (evt)=>formSubmitHandlerText(evt, form))
-//     // form.addEventListener('submit', (evt)=>formSubmitHandlerImage(evt, form))
-//     // form.reset();
-//   }
-// }
-
 function checkInputValidity(input, node){
   const errorMessage = node.querySelector(`.${input.name}-error`)
+
   if(input.validity.valid){
     input.classList.remove('error-color')
     errorMessage.textContent = ''
@@ -21,11 +11,14 @@ function checkInputValidity(input, node){
 }
 //КРАСКА КНОПКИ-------------------------------------------
 function checkButtonValidity(node){
+  // console.log(node.checkValidity())
   const button = node.querySelector('.popup__submit')
   if(node.checkValidity()===true){
     button.removeAttribute('disabled')
     button.classList.remove('popup__submit_disable')
+    console.log('yes')
   }else{
+    console.log('no')
     button.setAttribute('disabled', '')
     button.classList.add('popup__submit_disable')
   }
@@ -34,11 +27,7 @@ function checkButtonValidity(node){
 function enableValidation() {
   const formes= document.querySelectorAll('.isvalid')
   formes.forEach(node => {
-    // node.addEventListener('submit', (evt)=>{
-    //     formSubmitHandlerImage(evt, node)
-    // }
-    // )
-    // checkButtonValidity(node)
+    checkButtonValidity(node)
     const inputs = node.querySelectorAll('.popup__input')
     inputs.forEach(input=>input.addEventListener('input', ()=> {
       checkInputValidity(input, node)
@@ -46,6 +35,3 @@ function enableValidation() {
     }))
   })
 }
-
-// enableValidation()
-
