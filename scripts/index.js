@@ -44,11 +44,13 @@ const popupInputImgLink = document.querySelector('.popup__input_field_link')
 //     }
 // }
 // ))
-function escapeCloser(evt){
+function escapeCloser(evt, pop){
+  console.log(evt.target)
   if(evt.key === 'Escape'){
-    closePopup(popupTypeTextForm)
-    closePopup(popupTypeImageForm)
-    closePopup(popupTypeImage)
+
+    closePopup(pop)
+    // closePopup(popupTypeImageForm)
+    // closePopup(popupTypeImage)
   }
 }
 function closePopupClickOverlay(evt, pop) {
@@ -63,6 +65,7 @@ initialCards.forEach(el => renderCard(createCard(el.name, el.link), cards))
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   popup.addEventListener('click', (evt)=> closePopupClickOverlay(evt, popup))
+  document.addEventListener('keydown', (evt)=>escapeCloser(evt, popup))
 }
 //------------------------------------
 //ЗАКРЫТЬ ПОПАП---------------------------
@@ -100,6 +103,7 @@ function openPopupImage(name, link){
   caption.textContent = name
   openPopup(popupTypeImage)
   // popup.addEventListener('click', closePopup())
+
 }
 //----------------------------------------------------------------
 
@@ -134,13 +138,14 @@ function formSubmitHandlerImage(evt) {
   const link = popupInputImgLink.value
   renderCard(createCard(name, link), cards)
   closePopup(popupTypeImageForm);
+
 }
 
 function openPopupImageForm(pop) {
   openPopup(pop)
   popupInputImgTitle.value = ''
   popupInputImgLink.value = ''
-
+  document.addEventListener('keydown', (evt)=>escapeCloser(evt, pop))
 }
 
 //СЛУШАТЕЛИ
@@ -153,5 +158,5 @@ closeTextForm.addEventListener('click', ()=> closePopup(popupTypeTextForm))
 closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
 formElementImage.addEventListener('submit', formSubmitHandlerImage)
 //СЛУШАТЕЛЬ ЗАКРЫТИЯ ПО КНОПКЕ ESCAPE------------------
-document.addEventListener('keydown', escapeCloser)
+
 //-----------------------------------------------------
