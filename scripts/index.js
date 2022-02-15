@@ -45,7 +45,6 @@ const popupInputImgLink = document.querySelector('.popup__input_field_link')
 // }
 // ))
 function escapeCloser(evt, pop){
-  console.log(evt.target)
   if(evt.key === 'Escape'){
 
     closePopup(pop)
@@ -103,7 +102,6 @@ function openPopupImage(name, link){
   caption.textContent = name
   openPopup(popupTypeImage)
   // popup.addEventListener('click', closePopup())
-
 }
 //----------------------------------------------------------------
 
@@ -118,12 +116,15 @@ function deleteCard(card) {
 }
 
 // ПО НАЖАТИЮ НА "ОТПРАВИТЬ (ТЕКСТ)"
-// function formSubmitHandlerText(evt) {
-//   evt.preventDefault();
-//   profileTitle.textContent = nameInput.value;
-//   profileSubtitle.textContent = jobInput.value;
-//   closePopup(popupTypeTextForm);
-// }
+function formSubmitHandlerText(evt) {
+  evt.preventDefault();
+  profileTitle.textContent = nameInput.value;
+  profileSubtitle.textContent = jobInput.value;
+  // formElementText.reset();
+  closePopup(popupTypeTextForm);
+  // enableValidation()
+  // console.log(formElementText.checkValidity)
+}
 function openPopupText(pop) {
   openPopup(pop)
   nameInput.placeholder = profileTitle.textContent
@@ -132,13 +133,18 @@ function openPopupText(pop) {
   jobInput.value = ''
 }
 
-function formSubmitHandlerImage(evt) {
+function formSubmitHandlerImage(evt, form) {
   evt.preventDefault();
-  const name = popupInputImgTitle.value
-  const link = popupInputImgLink.value
-  renderCard(createCard(name, link), cards)
-  closePopup(popupTypeImageForm);
 
+    const name = popupInputImgTitle.value
+    const link = popupInputImgLink.value
+    renderCard(createCard(name, link), cards)
+    closePopup(popupTypeImageForm);
+    // form.reset()
+  
+
+  // formElementImage.reset();
+  // enableValidation()
 }
 
 function openPopupImageForm(pop) {
@@ -154,9 +160,11 @@ buttonImageRedactor.addEventListener('click', ()=>openPopupImageForm(popupTypeIm
 
 closeImage.addEventListener('click', ()=> closePopup(popupTypeImage))
 closeTextForm.addEventListener('click', ()=> closePopup(popupTypeTextForm))
-// formElementText.addEventListener('submit', formSubmitHandlerText);
+formElementText.addEventListener('submit', formSubmitHandlerText);
 closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
 formElementImage.addEventListener('submit', formSubmitHandlerImage)
 //СЛУШАТЕЛЬ ЗАКРЫТИЯ ПО КНОПКЕ ESCAPE------------------
 
 //-----------------------------------------------------
+
+enableValidation()

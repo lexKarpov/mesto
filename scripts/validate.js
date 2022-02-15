@@ -1,7 +1,13 @@
-const formSubmit = (evt, form)=>{
-  evt.preventDefault()
-  console.log(form.checkValidity())
-}
+
+// const formSubmit = (evt, form)=>{
+//   evt.preventDefault();
+//   console.log(form)
+//   if (form.checkValidity()) {
+//     // form.addEventListener('submit', (evt)=>formSubmitHandlerText(evt, form))
+//     // form.addEventListener('submit', (evt)=>formSubmitHandlerImage(evt, form))
+//     // form.reset();
+//   }
+// }
 
 function checkInputValidity(input, node){
   const errorMessage = node.querySelector(`.${input.name}-error`)
@@ -13,11 +19,9 @@ function checkInputValidity(input, node){
     errorMessage.textContent = input.validationMessage
   }
 }
-
+//КРАСКА КНОПКИ-------------------------------------------
 function checkButtonValidity(node){
-
   const button = node.querySelector('.popup__submit')
-  console.log(button)
   if(node.checkValidity()===true){
     button.removeAttribute('disabled')
     button.classList.remove('popup__submit_disable')
@@ -26,18 +30,15 @@ function checkButtonValidity(node){
     button.classList.add('popup__submit_disable')
   }
 }
-
+//--------------------------------------------------------
 function enableValidation() {
   const formes= document.querySelectorAll('.isvalid')
-
   formes.forEach(node => {
-    const button = node.querySelector('.popup__submit')
-    node.addEventListener('submit', (evt)=>{
-      formSubmit(evt, node)
-
-    }
-    )
-    checkButtonValidity(node)
+    // node.addEventListener('submit', (evt)=>{
+    //     formSubmitHandlerImage(evt, node)
+    // }
+    // )
+    // checkButtonValidity(node)
     const inputs = node.querySelectorAll('.popup__input')
     inputs.forEach(input=>input.addEventListener('input', ()=> {
       checkInputValidity(input, node)
@@ -46,7 +47,5 @@ function enableValidation() {
   })
 }
 
-
-enableValidation()
-
+// enableValidation()
 
