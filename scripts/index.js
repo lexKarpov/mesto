@@ -1,5 +1,3 @@
-
-
 const popupOpenTextRedactor = document.querySelector('.profile__redaction-button');
 //ПОПАПЫ-------------------------------------------------------------------
 const popupTypeTextForm = document.querySelector('.popup_type_text-form')
@@ -46,7 +44,6 @@ function closePopupClickOverlay(evt, pop) {
     closePopup(pop)
   }
 }
-
 
 //ОТКРЫТЬ ПОПАП-----------------------
 function openPopup(popup) {
@@ -104,12 +101,9 @@ function deleteCard(card) {
 // ПО НАЖАТИЮ НА "ОТПРАВИТЬ (ТЕКСТ)"
 function formSubmitHandlerText(evt) {
   evt.preventDefault();
-
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
   closePopup(popupTypeTextForm);
-
-
 }
 function openPopupText(pop) {
   openPopup(pop)
@@ -117,18 +111,24 @@ function openPopupText(pop) {
   jobInput.placeholder = profileSubtitle.textContent
   nameInput.value = ''
   jobInput.value = ''
-  // console.log(formElementText.checkValidity())
+  console.log(formElementText.checkValidity())
+  enableValidation({
+    formSelector: '.isvalid',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__submit_disable',
+    errorClass: 'error-color'
+  });
 }
 
 function formSubmitHandlerImage(evt) {
   evt.preventDefault();
-  console.log(formElementImage.checkValidity())
     const name = popupInputImgTitle.value
     const link = popupInputImgLink.value
     renderCard(createCard(name, link), cards)
     closePopup(popupTypeImageForm);
     formElementImage.reset()
-
 }
 
 function openPopupImageForm(pop) {
@@ -136,6 +136,15 @@ function openPopupImageForm(pop) {
   popupInputImgTitle.value = ''
   popupInputImgLink.value = ''
   document.addEventListener('keydown', (evt)=>escapeCloser(evt, pop))
+  enableValidation({
+    formSelector: '.isvalid',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__submit_disable',
+    errorClass: 'error-color'
+  });
+
 }
 
 //СЛУШАТЕЛИ
@@ -149,5 +158,5 @@ closeImageForm.addEventListener('click', ()=> closePopup(popupTypeImageForm))
 formElementImage.addEventListener('submit', formSubmitHandlerImage)
 
 
-enableValidation()
+// enableValidation()
 
