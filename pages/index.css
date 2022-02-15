@@ -44,9 +44,14 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__figure/popup__figure.css);
 @import url(../blocks/popup/__figcaption/popup__figcaption.css);
+@import url(../blocks/popup/__submit/_disable/popup__submit_disable.css);
 @import url(../blocks/animation/animation.css);
 
 
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);
+
+
+@import url(../blocks/error-color/error-color.css);
+@import url(../blocks/error/error.css);

@@ -1,0 +1,14 @@
+.error{
+  min-height: 12px;
+  color: red;
+  margin-bottom: 31px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+
+
+}
+.popup__input:first-child{
+  margin-bottom: 13px;
+}
