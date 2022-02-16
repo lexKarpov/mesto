@@ -87,6 +87,7 @@ function createCard(name, link){
  }
  //ОТКРЫТЬ ПОПАП С КАРТИНКОЙ--------------------------------------
 function openPopupImage(name, link){
+  img.alt = name
   img.src = link
   caption.textContent = name
   openPopup(popupTypeImage)
