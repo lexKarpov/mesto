@@ -1,38 +1,35 @@
-function checkInputValidity(input, node, {errorClass}){
+function checkInputValidity(input, node, validobj){
   const errorMessage = node.querySelector(`.${input.name}-error`)
   if(input.validity.valid){
-    input.classList.remove(errorClass)
+    input.classList.remove(validobj.errorClass)
     errorMessage.textContent = ''
   }else{
-    input.classList.add(errorClass)
+    input.classList.add(validobj.errorClass)
     errorMessage.textContent = input.validationMessage
   }
 }
 
 //КРАСКА КНОПКИ-------------------------------------------
-function checkButtonValidity(node, {submitButtonSelector, inputErrorClass}){
-  // console.log(node.checkValidity())
-  const button = node.querySelector(submitButtonSelector)
+function checkButtonValidity(node, validObj){
+  const button = node.querySelector(validObj.submitButtonSelector)
   if(node.checkValidity()===true){
     button.removeAttribute('disabled')
-    button.classList.remove(inputErrorClass)
-    console.log('yes')
+    button.classList.remove(validObj.inputErrorClass)
   }else{
-    console.log('no')
     button.setAttribute('disabled', '')
-    button.classList.add(inputErrorClass)
+    button.classList.add(validObj.inputErrorClass)
   }
 }
 //--------------------------------------------------------
 
-function enableValidation({formSelector, inputSelector, ...rest}) {
-  const formes= document.querySelectorAll(formSelector)
+function enableValidation(validObj) {
+  const formes= document.querySelectorAll(validObj.formSelector)
   formes.forEach(node => {
-    checkButtonValidity(node, rest)
-    const inputs = node.querySelectorAll(inputSelector)
+    checkButtonValidity(node, validObj)
+    const inputs = node.querySelectorAll(validObj.inputSelector)
     inputs.forEach(input=>input.addEventListener('input', ()=> {
-      checkInputValidity(input, node, rest)
-      checkButtonValidity(node, rest)
+      checkInputValidity(input, node, validObj)
+      checkButtonValidity(node, validObj)
     }))
   })
 }
