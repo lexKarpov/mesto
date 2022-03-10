@@ -1,8 +1,15 @@
+import { FormValidator } from './validate.js'
+import { initialCards } from './array.js'
+import { validObj } from './consts.js'
+import { CreateCard } from './card.js'
+import { openPopup } from './utils.js'
+
+
 const popupOpenTextRedactor = document.querySelector('.profile__redaction-button');
 //ПОПАПЫ-------------------------------------------------------------------
 const popupTypeTextForm = document.querySelector('.popup_type_text-form')
 const popupTypeImageForm = document.querySelector('.popup_type_image-form')
-const popupTypeImage = document.querySelector('.popup_type_image')
+
 //-------------------------------------------------------------------------
 
 //ФОРМА--------------------------------------------------------------------
@@ -17,7 +24,7 @@ const nameInput = document.querySelector('.popup__input_field_name')
 const jobInput = document.querySelector('.popup__input_field_activity')
 
 //ТЕМПЛЕЙТ--------------------------------------------------------------
-const templateGallery = document.querySelector('.card-template').content
+
 //----------------------------------------------------------------------
 const cards = document.querySelector('.cards')
 
@@ -26,11 +33,10 @@ const buttonImageRedactor = document.querySelector('.profile__button')
 const popupInputImgTitle = document.querySelector('.popup__input_field_name-img')
 const popupInputImgLink = document.querySelector('.popup__input_field_link')
 //-------------------------------------------------------------------------------
-const img = popupTypeImage.querySelector('.popup__image')
-const caption = popupTypeImage.querySelector('.popup__figcaption')
+
 const popups = document.querySelectorAll('.popup')
 
-initialCards.forEach(el => renderCard(createCard(el.name, el.link), cards))
+
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -43,19 +49,14 @@ popups.forEach((popup) => {
   })
 })
 
-function closeByEscape(evt){
-  if(evt.key === 'Escape'){
+export function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened')
     closePopup(openedPopup)
   }
 }
 
-//ОТКРЫТЬ ПОПАП-----------------------
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEscape);
-}
-//------------------------------------
+
 //ЗАКРЫТЬ ПОПАП---------------------------
 function closePopup(popup) {
   popup.classList.add('animation');
@@ -67,42 +68,14 @@ function closePopup(popup) {
 }
 //----------------------------------------
 
-function createCard(name, link){
-  const card = templateGallery.cloneNode(true);
-  const galleryTitle = card.querySelector('.gallery__title');
-  const galleryImages = card.querySelector('.gallery__img');
-  const deleteCardButton = card.querySelector('.gallery__delete');
-  galleryTitle.textContent = name;
-  galleryTitle.classList.add('ellipsis');
-  galleryImages.src = link;
-  galleryImages.alt = name;
 
-  const clickImage = card.querySelector('.gallery__img')
-  const like = card.querySelector('.gallery__like');
-  const elem = card.querySelector('.gallery__card');
-  deleteCardButton.addEventListener('click', () => deleteCard(elem));
-  like.addEventListener('click', ()=> likeToggles(like))
-  clickImage.addEventListener('click', ()=> openPopupImage(name, link))
-  return elem
- }
- //ОТКРЫТЬ ПОПАП С КАРТИНКОЙ--------------------------------------
-function openPopupImage(name, link){
-  img.alt = name
-  img.src = link
-  caption.textContent = name
-  openPopup(popupTypeImage)
-}
-//----------------------------------------------------------------
+initialCards.forEach(el => renderCard(new CreateCard(el.name, el.link).createCard(), cards));
+
 
 function renderCard(card, container) {
   container.prepend(card);
 }
-function likeToggles(el){
-  el.classList.toggle('gallery__like_active')
-}
-function deleteCard(card) {
-  card.remove();
-}
+
 
 // ПО НАЖАТИЮ НА "ОТПРАВИТЬ (ТЕКСТ)"
 function submitFormHandlerText(evt) {
@@ -117,37 +90,33 @@ function openPopupText(pop) {
   jobInput.placeholder = profileSubtitle.textContent
   nameInput.value = ''
   jobInput.value = ''
-  checkButtonValidity(formElementText, validObj)
+  enableTextFormValidation.enableValidation()
 }
 
 function submitFormHandlerImage(evt) {
   evt.preventDefault();
-    const name = popupInputImgTitle.value
-    const link = popupInputImgLink.value
-    renderCard(createCard(name, link), cards)
-    closePopup(popupTypeImageForm);
-    formElementImage.reset()
+  const name = popupInputImgTitle.value
+  const link = popupInputImgLink.value
+  renderCard(new CreateCard(name, link).createCard(), cards)
+  closePopup(popupTypeImageForm);
+  formElementImage.reset()
 }
 
 function openPopupImageForm(pop) {
   openPopup(pop)
   popupInputImgTitle.value = ''
   popupInputImgLink.value = ''
-  checkButtonValidity(formElementImage, validObj)
+  enableImageFormValidation.enableValidation()
 }
 
 //СЛУШАТЕЛИ
-popupOpenTextRedactor.addEventListener('click', ()=> openPopupText(popupTypeTextForm))
-buttonImageRedactor.addEventListener('click', ()=>openPopupImageForm(popupTypeImageForm))
+popupOpenTextRedactor.addEventListener('click', () => openPopupText(popupTypeTextForm))
+buttonImageRedactor.addEventListener('click', () => openPopupImageForm(popupTypeImageForm))
 formElementText.addEventListener('submit', submitFormHandlerText);
 formElementImage.addEventListener('submit', submitFormHandlerImage)
 
-const validObj = {
-  formSelector: '.isvalid',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__submit_disable',
-  errorClass: 'error-color'
-}
-enableValidation(validObj);
+// enableValidation(validObj);
+
+const enableTextFormValidation = new FormValidator(validObj, formElementText)
+const enableImageFormValidation = new FormValidator(validObj, formElementImage)
+
