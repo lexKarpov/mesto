@@ -13,6 +13,12 @@
   grid-row: 2/3;
 }
 
+@media all and (max-width:824px) {
+  .popup__window{
+    padding: 25px 22px 25px 22px;
+  }
+}
+
 @media all and (max-width:730px) {
   .popup__window{
     max-width: 330px;
@@ -25,8 +31,3 @@
   }
 }
 
-@media all and (max-width: 400px) {
-  .popup__window{
-    padding: 25px 22px 25px 22px;
-  }
-}

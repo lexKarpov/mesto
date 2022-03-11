@@ -7,19 +7,18 @@
 
 @media all and (max-width: 514px) {
   .popup__image{
-    width: 340px;
-    height: 399px;
-    object-fit: cover;
     min-width: 200px;
+    max-width: 340px;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
 
 @media all and (max-width: 408px) {
   .popup__image{
-    width: 240px;
-    height: 299px;
-    object-fit: cover;
+    max-width: 240px;
+    object-fit: contain;
     min-width: 200px;
   }
 }

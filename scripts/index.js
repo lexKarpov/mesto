@@ -1,7 +1,7 @@
-import { FormValidator } from './validate.js'
+import { Validate } from './Validate.js'
 import { initialCards } from './array.js'
 import { validObj } from './consts.js'
-import { CreateCard } from './card.js'
+import { Card } from './Card.js'
 import { openPopup } from './utils.js'
 
 
@@ -11,6 +11,8 @@ const popupTypeTextForm = document.querySelector('.popup_type_text-form')
 const popupTypeImageForm = document.querySelector('.popup_type_image-form')
 
 //-------------------------------------------------------------------------
+
+const templateSelector = '.card-template'
 
 //ФОРМА--------------------------------------------------------------------
 const formElementText = document.querySelector('.popup__admin_type_text')
@@ -26,7 +28,7 @@ const jobInput = document.querySelector('.popup__input_field_activity')
 //ТЕМПЛЕЙТ--------------------------------------------------------------
 
 //----------------------------------------------------------------------
-const cards = document.querySelector('.cards')
+const card = document.querySelector('.cards')
 
 //КНОПКА РЕДАКТИРОВАНИЯ КАРТИНОК-------------------------------------------------
 const buttonImageRedactor = document.querySelector('.profile__button')
@@ -40,10 +42,7 @@ const popups = document.querySelectorAll('.popup')
 
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
-    }
-    if (evt.target.classList.contains('popup__button-close')) {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__button-close')) {
       closePopup(popup)
     }
   })
@@ -69,13 +68,16 @@ function closePopup(popup) {
 //----------------------------------------
 
 
-initialCards.forEach(el => renderCard(new CreateCard(el.name, el.link).createCard(), cards));
+initialCards.forEach(el => renderCard(createExempleCard(el.name, el.link, templateSelector), card));
+
 
 
 function renderCard(card, container) {
   container.prepend(card);
 }
-
+function createExempleCard(name, link, templateSelector) {
+  return new Card(name, link, templateSelector).createCard()
+}
 
 // ПО НАЖАТИЮ НА "ОТПРАВИТЬ (ТЕКСТ)"
 function submitFormHandlerText(evt) {
@@ -85,28 +87,36 @@ function submitFormHandlerText(evt) {
   closePopup(popupTypeTextForm);
 }
 function openPopupText(pop) {
+
+  clearError(pop)
+  nameInput.value = profileTitle.textContent
+  jobInput.value = profileSubtitle.textContent
+  enableTextFormValidation.checkButtonValidity()
   openPopup(pop)
-  nameInput.placeholder = profileTitle.textContent
-  jobInput.placeholder = profileSubtitle.textContent
-  nameInput.value = ''
-  jobInput.value = ''
-  enableTextFormValidation.enableValidation()
 }
 
 function submitFormHandlerImage(evt) {
   evt.preventDefault();
   const name = popupInputImgTitle.value
   const link = popupInputImgLink.value
-  renderCard(new CreateCard(name, link).createCard(), cards)
+  renderCard(createExempleCard(name, link, templateSelector), card)
   closePopup(popupTypeImageForm);
   formElementImage.reset()
 }
 
 function openPopupImageForm(pop) {
+  formElementImage.reset()
+  clearError(pop)
+  console.log(pop);
+  enableImageFormValidation.checkButtonValidity()
   openPopup(pop)
-  popupInputImgTitle.value = ''
-  popupInputImgLink.value = ''
-  enableImageFormValidation.enableValidation()
+}
+
+function clearError(popup) {
+  const text = popup.querySelectorAll('.error')
+  const line = popup.querySelectorAll('.popup__input')
+  text.forEach(el => el.textContent = '')
+  line.forEach(el => el.classList.remove('error-color'))
 }
 
 //СЛУШАТЕЛИ
@@ -117,6 +127,8 @@ formElementImage.addEventListener('submit', submitFormHandlerImage)
 
 // enableValidation(validObj);
 
-const enableTextFormValidation = new FormValidator(validObj, formElementText)
-const enableImageFormValidation = new FormValidator(validObj, formElementImage)
+const enableTextFormValidation = new Validate(validObj, formElementText)
+const enableImageFormValidation = new Validate(validObj, formElementImage)
 
+enableTextFormValidation.enableValidation()
+enableImageFormValidation.enableValidation()
