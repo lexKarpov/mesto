@@ -1,4 +1,4 @@
-import { Validate } from './Validate.js'
+import { FormValidator } from './FormValidator.js'
 import { initialCards } from './array.js'
 import { validObj } from './consts.js'
 import { Card } from './Card.js'
@@ -28,7 +28,7 @@ const jobInput = document.querySelector('.popup__input_field_activity')
 //ТЕМПЛЕЙТ--------------------------------------------------------------
 
 //----------------------------------------------------------------------
-const card = document.querySelector('.cards')
+const cardsContainer = document.querySelector('.cards')
 
 //КНОПКА РЕДАКТИРОВАНИЯ КАРТИНОК-------------------------------------------------
 const buttonImageRedactor = document.querySelector('.profile__button')
@@ -68,7 +68,7 @@ function closePopup(popup) {
 //----------------------------------------
 
 
-initialCards.forEach(el => renderCard(createExempleCard(el.name, el.link, templateSelector), card));
+initialCards.forEach(el => renderCard(createExempleCard(el.name, el.link, templateSelector), cardsContainer));
 
 
 
@@ -87,8 +87,7 @@ function submitFormHandlerText(evt) {
   closePopup(popupTypeTextForm);
 }
 function openPopupText(pop) {
-
-  clearError(pop)
+  enableTextFormValidation.clearError()
   nameInput.value = profileTitle.textContent
   jobInput.value = profileSubtitle.textContent
   enableTextFormValidation.checkButtonValidity()
@@ -99,25 +98,20 @@ function submitFormHandlerImage(evt) {
   evt.preventDefault();
   const name = popupInputImgTitle.value
   const link = popupInputImgLink.value
-  renderCard(createExempleCard(name, link, templateSelector), card)
+  renderCard(createExempleCard(name, link, templateSelector), cardsContainer)
   closePopup(popupTypeImageForm);
   formElementImage.reset()
 }
 
 function openPopupImageForm(pop) {
   formElementImage.reset()
-  clearError(pop)
+  enableImageFormValidation.clearError()
+
   console.log(pop);
   enableImageFormValidation.checkButtonValidity()
   openPopup(pop)
 }
 
-function clearError(popup) {
-  const text = popup.querySelectorAll('.error')
-  const line = popup.querySelectorAll('.popup__input')
-  text.forEach(el => el.textContent = '')
-  line.forEach(el => el.classList.remove('error-color'))
-}
 
 //СЛУШАТЕЛИ
 popupOpenTextRedactor.addEventListener('click', () => openPopupText(popupTypeTextForm))
@@ -127,8 +121,8 @@ formElementImage.addEventListener('submit', submitFormHandlerImage)
 
 // enableValidation(validObj);
 
-const enableTextFormValidation = new Validate(validObj, formElementText)
-const enableImageFormValidation = new Validate(validObj, formElementImage)
+const enableTextFormValidation = new FormValidator(validObj, formElementText)
+const enableImageFormValidation = new FormValidator(validObj, formElementImage)
 
 enableTextFormValidation.enableValidation()
 enableImageFormValidation.enableValidation()
