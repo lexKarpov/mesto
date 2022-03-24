@@ -1,12 +1,17 @@
-import { FormValidator } from './FormValidator.js'
-import { initialCards } from './array.js'
-import { validObj } from './consts.js'
-import { Card } from './Card.js'
-import { Section } from './Section.js'
-import Popup from './Popup.js'
-import PopupWithForm from './PopupWithForm.js'
-import PopupWithImage from './PopupWithImage.js'
-import UserInfo from './UserInfo.js'
+import './pages/index.css'; // добавьте импорт главного файла стилей
+
+import { FormValidator } from './scripts/FormValidator.js'
+import { initialCards } from './scripts/array.js'
+import { validObj } from './scripts/consts.js'
+import { Card } from './scripts/Card.js'
+import { Section } from './scripts/Section.js'
+import Popup from './scripts/Popup.js'
+import PopupWithForm from './scripts/PopupWithForm.js'
+import PopupWithImage from './scripts/PopupWithImage.js'
+import UserInfo from './scripts/UserInfo.js'
+
+
+
 
 export const templateSelector = '.card-template'
 
