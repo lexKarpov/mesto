@@ -1,9 +1,5 @@
-
-import { openPopupImage } from './utils.js'
-
-
 export class Card {
-  constructor(name, link, templateElement) {
+  constructor(name, link, templateElement, handleCardClick) {
     this._name = name
     this._link = link
     this._card = document.querySelector(templateElement).content.cloneNode(true);
@@ -12,6 +8,7 @@ export class Card {
     this._cardDeleteButton = this._card.querySelector('.gallery__delete');
     this._like = this._card.querySelector('.gallery__like');
     this._elem = this._card.querySelector('.gallery__card');
+    this._handleCardClick = handleCardClick
   }
   _likeToggles() {
     this._like.classList.toggle('gallery__like_active')
@@ -24,7 +21,7 @@ export class Card {
   _setEventListener() {
     this._cardDeleteButton.addEventListener('click', () => this._deleteCard());
     this._like.addEventListener('click', () => this._likeToggles(this._like))
-    this._galleryImages.addEventListener('click', () => openPopupImage(this._name, this._link))
+    this._galleryImages.addEventListener('click', () => this._handleCardClick(this._name, this._link))
   }
   createCard() {
     this._setEventListener()
@@ -36,3 +33,6 @@ export class Card {
   }
 
 }
+
+
+
