@@ -1,5 +1,4 @@
 const templateGallery = document.querySelector('.card-template').content
-
 const popupTypeImage = document.querySelector('.popup_type_image')
 const img = popupTypeImage.querySelector('.popup__image')
 const caption = popupTypeImage.querySelector('.popup__figcaption')

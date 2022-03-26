@@ -1,8 +1,11 @@
+const templateSelector = '.card-template'
+
+
 export class Card {
-  constructor(name, link, templateElement, handleCardClick) {
+  constructor(name, link, handleCardClick) {
     this._name = name
     this._link = link
-    this._card = document.querySelector(templateElement).content.cloneNode(true);
+    this._card = document.querySelector(templateSelector).content.cloneNode(true);
     this._galleryTitle = this._card.querySelector('.gallery__title');
     this._galleryImages = this._card.querySelector('.gallery__img');
     this._cardDeleteButton = this._card.querySelector('.gallery__delete');

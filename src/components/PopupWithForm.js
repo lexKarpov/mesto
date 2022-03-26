@@ -1,21 +1,25 @@
 import Popup from "./Popup.js";
+import {enableImageFormValidation} from "../pages/index";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, submitFunc) {
     super(popupSelector)
     this._submitFunc = submitFunc
     this._form = this._element.querySelector('.popup__admin')
+    this._inputList = this._form.querySelectorAll('.popup__input');
   }
   open() {
+    enableImageFormValidation.checkButtonValidity()
     super.open()
   }
+
   _getInputValues() {
-    this._inputs = this._form.querySelectorAll('.popup__input')
-    console.log(this._inputs);
-    return this._inputs
+    this._formValues = {};
+    this._inputList.forEach(input => this._formValues[input.name] = input.value);
+    return this._formValues;
   }
   setEventListeners() {
-    this._form.addEventListener('submit', this._submitFunc)
+    this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()), {once: true})
     super.setEventListeners()
   }
 
