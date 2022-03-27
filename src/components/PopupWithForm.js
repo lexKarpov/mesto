@@ -7,6 +7,7 @@ export default class PopupWithForm extends Popup {
     this._submitFunc = submitFunc
     this._form = this._element.querySelector('.popup__admin')
     this._inputList = this._form.querySelectorAll('.popup__input');
+
   }
   open() {
     enableImageFormValidation.checkButtonValidity()
@@ -19,7 +20,7 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
   setEventListeners() {
-    this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()), {once: true})
+    this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()))
     super.setEventListeners()
   }
 

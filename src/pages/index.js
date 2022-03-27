@@ -1,5 +1,4 @@
 import './index.css'; // добавьте импорт главного файла стилей
-
 import { FormValidator } from '../components/FormValidator.js'
 import { initialCards } from '../utils/array.js'
 import { validObj } from '../utils/consts.js'
@@ -10,20 +9,12 @@ import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import UserInfo from '../components/UserInfo.js'
 
-
-
 const popupOpenTextRedactor = document.querySelector('.profile__redaction-button');
-
-// export const openPopupTypeTextForm = new Popup('.popup_type_text-form')
-
-//-------------------------------------------------------------------------
 
 //ФОРМА--------------------------------------------------------------------
 const formElementText = document.querySelector('.popup__admin_type_text')
 const formElementImage = document.querySelector('.popup__admin_type_image')
 //-------------------------------------------------------------------------
-
-// export const profileTitle = document.querySelector('.profile__title');
 
 // Находим поля формы в DOM
 const nameInput = document.querySelector('.popup__input_field_name')
@@ -46,12 +37,6 @@ const createExempleCard = (name, link) => {
   return card.createCard();
 }
 
-
-// function createExempleCard(name, link, func) {
-//   return new Card(name, link, func)
-// }
-
-
 export const enableTextFormValidation = new FormValidator(validObj, formElementText)
 export const enableImageFormValidation = new FormValidator(validObj, formElementImage)
 
@@ -68,14 +53,15 @@ const elem = new Section(
       elem.addItem(example)
       return example
     }
-  }, cardsContainer
-
+  },
+  cardsContainer
 )
 elem.renderItems()
 
 
 // =========================================example of class PopupWithImage===============
 export const popupWithImg = new PopupWithImage('.popup_type_image')
+popupWithImg.setEventListeners()
 //========================================================================================
 const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data) => {
   evt.preventDefault()
@@ -85,6 +71,7 @@ const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data
   popupWithFrmImage.close()
   enableImageFormValidation.blockButton()
 })
+popupWithFrmImage.setEventListeners()
 
 export const popupWithText = new PopupWithForm('.popup_type_text-form', (evt, data) => {
   evt.preventDefault()
@@ -95,22 +82,8 @@ export const popupWithText = new PopupWithForm('.popup_type_text-form', (evt, da
 })
 popupOpenTextRedactor.addEventListener('click', () => {
   popupWithText.open()
-
 })
+
+popupWithText.setEventListeners()
 buttonImageRedactor.addEventListener('click', () => popupWithFrmImage.open())
 
-
-
-// const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data) => {
-//   evt.preventDefault()
-//   if(enableImageFormValidation._form.checkValidity()){ //при сабмите проверяется форма на валидность,
-//     //это надо для того, чтобы по нажатию на оверлей при валидных значениях инпутов при следующем открытии
-//     //попапа и сабмите с корректными инпутами не создавалась пустая карточка
-//     const name = data['name-img'] //берем данные
-//     const link = data.link
-//     elem.addItem(createExempleCard(name, link)) // создаем карточку и добавляем на страницу
-//     popupWithFrmImage.close() // закрыли попап
-//     enableImageFormValidation.checkButtonValidity() // проверили , тобы кнопка не была активной при повторных открытиях попапа
-//   }
-//
-// })
