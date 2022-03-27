@@ -35,9 +35,21 @@ const cardsContainer = document.querySelector('.cards')
 const buttonImageRedactor = document.querySelector('.profile__button')
 //-------------------------------------------------------------------------------
 
-function createExempleCard(name, link, func) {
-  return new Card(name, link, func)
+const createExempleCard = (name, link) => {
+  const card = new Card(
+    name,
+    link,
+    (name, link) => {
+      popupWithImg.open({ name: name, link: link })
+    },
+    cardsContainer);
+  return card.createCard();
 }
+
+
+// function createExempleCard(name, link, func) {
+//   return new Card(name, link, func)
+// }
 
 
 export const enableTextFormValidation = new FormValidator(validObj, formElementText)
@@ -52,7 +64,7 @@ const elem = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const example = createExempleCard(item.name, item.link, (name, link) => popupWithImg.open({ name: name, link: link })).createCard()
+      const example = createExempleCard(item.name, item.link)
       elem.addItem(example)
       return example
     }
@@ -67,13 +79,10 @@ export const popupWithImg = new PopupWithImage('.popup_type_image')
 //========================================================================================
 const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data) => {
   evt.preventDefault()
-  if(enableImageFormValidation._form.checkValidity()){
-    const name = data['name-img']
-    const link = data.link
-    elem.addItem(createExempleCard(name, link, () => popupWithImg.open({ name: name, link: link })).createCard())
-    popupWithFrmImage.close()
-    enableImageFormValidation.checkButtonValidity()
-  }
+  const name = data['name-img']
+  const link = data.link
+  elem.addItem(createExempleCard(name, link))
+  popupWithFrmImage.close()
   enableImageFormValidation.blockButton()
 })
 
@@ -89,3 +98,19 @@ popupOpenTextRedactor.addEventListener('click', () => {
 
 })
 buttonImageRedactor.addEventListener('click', () => popupWithFrmImage.open())
+
+
+
+// const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data) => {
+//   evt.preventDefault()
+//   if(enableImageFormValidation._form.checkValidity()){ //при сабмите проверяется форма на валидность,
+//     //это надо для того, чтобы по нажатию на оверлей при валидных значениях инпутов при следующем открытии
+//     //попапа и сабмите с корректными инпутами не создавалась пустая карточка
+//     const name = data['name-img'] //берем данные
+//     const link = data.link
+//     elem.addItem(createExempleCard(name, link)) // создаем карточку и добавляем на страницу
+//     popupWithFrmImage.close() // закрыли попап
+//     enableImageFormValidation.checkButtonValidity() // проверили , тобы кнопка не была активной при повторных открытиях попапа
+//   }
+//
+// })
