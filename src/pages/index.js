@@ -43,7 +43,7 @@ export const enableImageFormValidation = new FormValidator(validObj, formElement
 enableTextFormValidation.enableValidation()
 enableImageFormValidation.enableValidation()
 
-const userInfoExample = new UserInfo({ name: '.profile__title', activity: '.profile__subtitle' })
+export const userInfoExample = new UserInfo({ name: '.profile__title', activity: '.profile__subtitle' })
 
 const elem = new Section(
   {
@@ -77,10 +77,12 @@ export const popupWithText = new PopupWithForm('.popup_type_text-form', (evt, da
   evt.preventDefault()
   userInfoExample.setUserInfo(data)
   popupWithText.close()
-    nameInput.value = data.name
-  jobInput.value = data.activity
+
 })
 popupOpenTextRedactor.addEventListener('click', () => {
+  const text = userInfoExample.getUserInfo()
+  nameInput.value = text.name
+  jobInput.value = text.activity
   popupWithText.open()
 })
 
