@@ -19,7 +19,16 @@
       <section class="profile">
         <div class="profile__naming">
           <!-- <img src="./images/avatar.jpg" alt="аватарка" class="profile__avatar"> -->
-          <img src="<%=require('./images/avatar.jpg')%>" alt="аватарка" class="profile__avatar">
+<!--          <img src="<%=require('./images/avatar.jpg')%>" alt="аватарка" class="profile__avatar">-->
+<!--          <div class="profile__avatar-redactor">-->
+<!--            <img src="" alt="аватарка" class="profile__avatar">-->
+<!--            <img src="<%=require('./images/redactorAvatar.png')%>" alt="редактор картинки" class="profile__redactor-image">-->
+<!--          </div>-->
+          <div class="profile__avatar-redactor">
+            <img src="" alt="аватарка" class="profile__avatar">
+            <button class="profile__redactor-image-button"><img src="<%=require('./images/redactorAvatar.png')%>" alt="редактор картинки" class="profile__redactor-image"></button>
+          </div>
+
           <div class="profile__text">
             <div class="profile__redaction">
               <h1 class="profile__title ellipsis">Жак-Ив Кусто</h1>
@@ -74,6 +83,19 @@
       </div>
     </div>
 
+    <div class="popup popup_type_redactor-image-form">
+      <div class="popup__window">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="profile-image-redactor" class="popup__admin popup__admin_type_image-profile isvalid" novalidate>
+          <input type="url" required placeholder="Ссылка на картинку" name="link"
+                 class="popup__input popup__input_field_link">
+          <span class="error link-error"></span>
+          <input type="submit" value="Сохранить" class="popup__submit">
+        </form>
+        <button type="button" class="popup__button-close popup__button-close_type_image-profile-form"></button>
+      </div>
+    </div>
+
     <div class="popup popup_type_image">
       <figure class="popup__window-wrap">
         <img src="#" alt="" class="popup__image">
@@ -83,13 +105,27 @@
     </div>
   </div>
 
+  <div class="popup popup_type_confirm-delete-card">
+    <div class="popup__window">
+      <form name="profile-image-redactor" class="popup__admin popup__admin_confirm-delete-card isvalid" novalidate>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <input type="submit" value="Да" class="popup__submit">
+      </form>
+      <button type="button" class="popup__button-close popup__button-close_type_confirm-form"></button>
+    </div>
+  </div>
+
   <template class="card-template">
     <li class="gallery__card">
       <img src="#" alt="" class="gallery__img">
       <button type="button" class="gallery__delete"></button>
       <div class="gallery__description">
         <h2 class="gallery__title"></h2>
-        <button type="button" class="gallery__like"></button>
+        <div class="gallery__like-box">
+          <button type="button" class="gallery__like"></button>
+          <div class="gallery__like-counter">22</div>
+        </div>
+
       </div>
     </li>
   </template>

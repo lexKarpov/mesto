@@ -37,7 +37,7 @@ export class FormValidator {
   }
   blockButton(){
     this._button.setAttribute('disabled', '')
-    console.log(this._button)
+    // console.log(this._button)
   }
   _hideInputError(input) {
     const errorElement = this._form.querySelector(`.${input.name}-error`);
