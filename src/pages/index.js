@@ -147,13 +147,11 @@ export const popupWithText = new PopupWithForm('.popup_type_text-form', (evt, da
   evt.preventDefault()
   const punctObj = changePoints(evt)
   punctObj.button.value = punctObj.withPunct
-  // userInfoExample.setUserInfo(data)
-  popupWithText.close()
     api.patchText(data)
       .then(res=> {
         userInfoExample.setUserInfo(data)
         ownerCardId = res._id
-        // punctObj.button.value = punctObj.noPunct
+        popupWithText.close()
       })
       .catch(err => console.log(err))
       .finally(()=>{
@@ -200,13 +198,6 @@ Promise.all([api.getUserInfo(), api.getCards()])
     // тут ловим ошибку
     console.log(err)
   });
-
-
-
-
-
-
-
 
 
 redactorAvatar.addEventListener('click', ()=> {

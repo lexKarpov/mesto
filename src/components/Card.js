@@ -27,14 +27,13 @@ export class Card {
           this._like.classList.add('gallery__like_active')
         })
         .catch(err => console.log(`error: ${err.message}`))
-
     }else{
-
       this._api.deleteLikesCoins(this._objectProperty._id)
         .then(res => {
           this.countLikes(res)
           this._like.classList.remove('gallery__like_active')
         })
+        .catch(err => console.log(`error: ${err.message}`))
     }
   }
   _getObj(){

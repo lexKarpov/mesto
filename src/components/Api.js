@@ -17,18 +17,18 @@ export class Api {
     })
       .then(this._checkResponse)
   }
-  getInitialCards() {
-    fetch(`${this._url}/cards`, {
-      headers: {
-        authorization: `${this._auth}`,
-      }
-    })
-      // .then(res => res.json())
-      .then(res=>this._checkResponse(res))
-      .then((result) => {
-        console.log(result);
-      });
-   }
+  // getInitialCards() {
+  //   fetch(`${this._url}/cards`, {
+  //     headers: {
+  //       authorization: `${this._auth}`,
+  //     }
+  //   })
+  //     // .then(res => res.json())
+  //     .then(res=>this._checkResponse(res))
+  //     .then((result) => {
+  //       console.log(result);
+  //     });
+  //  }
   patchText(data){
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
@@ -71,7 +71,6 @@ export class Api {
       }
     })
       .then(this._checkResponse)
-
   }
   deleteLikesCoins(cardId){
     return fetch(`${this._url}/cards/${cardId}/likes`, {
@@ -82,7 +81,6 @@ export class Api {
       }
     })
       .then(res=>this._checkResponse(res))
-      .catch(err => console.log(err))
   }
   deleteCard(cardId){
     return fetch(`${this._url}/cards/${cardId}`, {
@@ -93,7 +91,6 @@ export class Api {
       }
     })
       .then(this._checkResponse)
-
   }
 
   changeAvatar(link){
@@ -108,7 +105,6 @@ export class Api {
       })
     })
       .then(this._checkResponse)
-
   }
 
   _checkResponse(res) {
