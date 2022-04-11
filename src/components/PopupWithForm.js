@@ -1,5 +1,5 @@
 import Popup from "./Popup.js";
-import {enableImageFormValidation, enablepopupConfirmDeleteFormValidation, userInfoExample} from "../pages/index.js";
+// import {enableImageFormValidation, enablepopupConfirmDeleteFormValidation, userInfoExample} from "../pages/index.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, submitFunc) {
@@ -10,8 +10,8 @@ export default class PopupWithForm extends Popup {
   }
 
   open() {
-    enableImageFormValidation.checkButtonValidity()
-    enablepopupConfirmDeleteFormValidation.checkButtonValidity()
+    // enableImageFormValidation.checkButtonValidity()
+    // enablepopupConfirmDeleteFormValidation.checkButtonValidity()
     super.open()
   }
 
@@ -22,11 +22,12 @@ export default class PopupWithForm extends Popup {
   }
   // popup__admin_confirm-delete-card
   setEventListeners() {
-    if(this._form.classList.contains('popup__admin_confirm-delete-card')){
-      // this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()))
-    }else{
-      this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()))
-    }
+    // if(this._form.classList.contains('popup__admin_confirm-delete-card')){
+    //   // this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()))
+    // }else{
+    //   this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()))
+    // }
+    this._form.addEventListener('submit', (evt)=>this._submitFunc(evt, this._getInputValues()))
     super.setEventListeners()
   }
 

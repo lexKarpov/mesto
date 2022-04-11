@@ -7,12 +7,18 @@ export class FormValidator {
   enableValidation() {
     this.checkButtonValidity()
     this._inputList = this._form.querySelectorAll(this._validObj.inputSelector)
+    // this._inputList.forEach(input => input.addEventListener('input', () => {
+    //   this._checkInputValidity(input)
+    //   this.checkButtonValidity()
+    // }))
+    this._setEventListener()
+  }
+  _setEventListener(){
     this._inputList.forEach(input => input.addEventListener('input', () => {
       this._checkInputValidity(input)
       this.checkButtonValidity()
     }))
   }
-
   checkButtonValidity() {
     if (this._form.checkValidity()) {
       this._button.removeAttribute('disabled')
@@ -37,7 +43,7 @@ export class FormValidator {
   }
   blockButton(){
     this._button.setAttribute('disabled', '')
-    // console.log(this._button)
+    this._button.classList.add(this._validObj.inputErrorClass)
   }
   _hideInputError(input) {
     const errorElement = this._form.querySelector(`.${input.name}-error`);

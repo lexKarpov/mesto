@@ -1,10 +1,7 @@
 export class Api {
-  constructor(options, func1, func2, func3) {
+  constructor(options) {
     this._url = options.baseUrl
     this._auth = options.headers.authorization
-    this._func1 = func1
-    this._func2 = func2
-    this._func3 = func3
   }
   postCard(name, link) {
     return fetch(`${this._url}/cards`, {
@@ -18,8 +15,7 @@ export class Api {
         link: link
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
   }
   getInitialCards() {
     fetch(`${this._url}/cards`, {
@@ -27,7 +23,8 @@ export class Api {
         authorization: `${this._auth}`,
       }
     })
-      .then(res => res.json())
+      // .then(res => res.json())
+      .then(res=>this._checkResponse(res))
       .then((result) => {
         console.log(result);
       });
@@ -44,33 +41,25 @@ export class Api {
         about: data.activity
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
+
   }
   getUserInfo(){
-    fetch(`${this._url}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
         headers: {
         authorization: `${this._auth}`,
         }
       })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .then((result) => {
-        this._func1(result)
-        })
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
   }
 
-  renderCards(){
-    fetch(`${this._url}/cards`, {
+  getCards(){
+    return fetch(`${this._url}/cards`, {
       headers: {
         authorization: `${this._auth}`,
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .then((result) => {
-        this._func2(result)
-      })
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
   }
 
   getLikesCoins(cardId){
@@ -81,8 +70,8 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
+
   }
   deleteLikesCoins(cardId){
     return fetch(`${this._url}/cards/${cardId}/likes`, {
@@ -92,7 +81,7 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
+      .then(res=>this._checkResponse(res))
       .catch(err => console.log(err))
   }
   deleteCard(cardId){
@@ -103,8 +92,8 @@ export class Api {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
+
   }
 
   changeAvatar(link){
@@ -118,9 +107,14 @@ export class Api {
         avatar: link
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`))
-      .catch(err => console.log(err))
+      .then(this._checkResponse)
+
   }
+
+  _checkResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+  }
+
 }
 
 //Токен: 322327ea-4136-41b9-989d-cc6e37a8bd67

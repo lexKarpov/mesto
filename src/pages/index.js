@@ -41,7 +41,10 @@ const createExempleCard = (name, link, item) => {
     (name, link) => {
       popupWithImg.open({ name: name, link: link })
     },
-    cardsContainer
+    cardsContainer,
+    ownerCardId,
+    api,
+    popupConfirmDelete
     );
   return card.createCard(item);
 }
@@ -68,7 +71,7 @@ const elem = new Section(
 
 export const popupConfirmDelete = new PopupConfirmDelete('.popup_type_confirm-delete-card', (evt, data) => {
   evt.preventDefault()
-  const punctObj = ux(evt)
+  const punctObj = changePoints(evt)
   punctObj.button.value = punctObj.withPunct
   api.deleteCard(data[0]._id)
     .then(res => {
@@ -76,6 +79,10 @@ export const popupConfirmDelete = new PopupConfirmDelete('.popup_type_confirm-de
       data[1] = null
       popupConfirmDelete.close()
       enablepopupConfirmDeleteFormValidation.blockButton()
+
+    })
+    .catch(err => console.log(err))
+    .finally(()=>{
       punctObj.button.value = punctObj.noPunct
     })
 })
@@ -87,36 +94,44 @@ popupWithImg.setEventListeners()
 //========================ОТПРАВКА КАРТОЧКИ НА СЕРВЕР И ОТРИСОВКА===========================================
 const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data) => {
   evt.preventDefault()
-  const punctObj = ux(evt)
+  const punctObj = changePoints(evt)
   punctObj.button.value = punctObj.withPunct
   const name = data['name-img']
   const link = data.link
+  console.log(link)
   api.postCard(data['name-img'],data.link)
-    .then(res=> res.json())
     .then(res=> {
       elem.addItem(createExempleCard(name, link, res))
       popupWithFrmImage.close()
       enableImageFormValidation.blockButton()
+
+    })
+    .catch(err => console.log(err))
+    .finally(()=>{
       punctObj.button.value = punctObj.noPunct
-      // console.log(res.owner._id)
     })
 })
 popupWithFrmImage.setEventListeners()
 
 export const popupRedactProfileImage = new PopupWithForm('.popup_type_redactor-image-form', (evt, data) => {
   evt.preventDefault()
-  const punctObj = ux(evt)
+  const punctObj = changePoints(evt)
   punctObj.button.value = punctObj.withPunct
-  popupRedactProfileImage.close()
+
   api.changeAvatar(data.link)
     .then(res => {
-      avathar.src = data.link
+      userInfoExample.changeAvatar(data.link)
+      // punctObj.button.value = punctObj.noPunct
+      popupRedactProfileImage.close()
+    })
+    .catch(err => console.log(err))
+    .finally(()=>{
       punctObj.button.value = punctObj.noPunct
     })
 })
 popupRedactProfileImage.setEventListeners()
 
-function ux(evt) {
+function changePoints(evt) {
   const formElem = evt.target.closest('.popup')
   const formButton = formElem.querySelector('.popup__submit')
   const formButtonWithoutPunct = formButton.value
@@ -130,13 +145,18 @@ function ux(evt) {
 
 export const popupWithText = new PopupWithForm('.popup_type_text-form', (evt, data) => {
   evt.preventDefault()
-  const punctObj = ux(evt)
+  const punctObj = changePoints(evt)
   punctObj.button.value = punctObj.withPunct
-  userInfoExample.setUserInfo(data)
+  // userInfoExample.setUserInfo(data)
   popupWithText.close()
     api.patchText(data)
       .then(res=> {
+        userInfoExample.setUserInfo(data)
         ownerCardId = res._id
+        // punctObj.button.value = punctObj.noPunct
+      })
+      .catch(err => console.log(err))
+      .finally(()=>{
         punctObj.button.value = punctObj.noPunct
       })
 })
@@ -153,30 +173,41 @@ popupWithText.setEventListeners()
 buttonImageRedactor.addEventListener('click', () => popupWithFrmImage.open())
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
-  headers: {
-    authorization: '322327ea-4136-41b9-989d-cc6e37a8bd67',
-    'Content-Type': 'application/json'
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
+    headers: {
+      authorization: '322327ea-4136-41b9-989d-cc6e37a8bd67',
+      'Content-Type': 'application/json'
+    }
   }
-}, function (data){
-  const {name, about, avatar} = data
-  avathar.src = avatar
-    ownerCardId = data._id
-  userInfoExample.setUserInfo({name: name, activity: about})
-},
-  function (data){
-
-    elem.renderItems(data)
-
-  },
-  function (data){
-    console.log(data.likes.length)
-  }
-
 );
 
-api.getUserInfo()
-api.renderCards()
+const renderUserInfo = data=> {
+  const {name, about, avatar} = data
+  avathar.src = avatar
+  ownerCardId = data._id
+  userInfoExample.setUserInfo({name: name, activity: about})
+}
+const renderCards = data=> {
+  elem.renderItems(data)
+}
+
+Promise.all([api.getUserInfo(), api.getCards()])
+  .then(([userInfo, cards]) => {
+    renderUserInfo(userInfo)
+    renderCards(cards)
+  })
+  .catch(err => {
+    // тут ловим ошибку
+    console.log(err)
+  });
+
+
+
+
+
+
+
+
 
 redactorAvatar.addEventListener('click', ()=> {
   popupRedactProfileImage.open()
