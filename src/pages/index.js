@@ -7,7 +7,7 @@ import Popup from '../components/Popup.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import UserInfo from '../components/UserInfo.js'
-import {Api} from "../components/Api.js";
+import { Api } from "../components/Api.js";
 import PopupConfirmDelete from '../components/PopoupConfirmDelete.js'
 
 export let ownerCardId = ''
@@ -45,7 +45,7 @@ const createExempleCard = (name, link, item) => {
     ownerCardId,
     api,
     popupConfirmDelete
-    );
+  );
   return card.createCard(item);
 }
 
@@ -82,7 +82,7 @@ export const popupConfirmDelete = new PopupConfirmDelete('.popup_type_confirm-de
 
     })
     .catch(err => console.log(err))
-    .finally(()=>{
+    .finally(() => {
       punctObj.button.value = punctObj.noPunct
     })
 })
@@ -99,15 +99,15 @@ const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data
   const name = data['name-img']
   const link = data.link
   console.log(link)
-  api.postCard(data['name-img'],data.link)
-    .then(res=> {
+  api.postCard(data['name-img'], data.link)
+    .then(res => {
       elem.addItem(createExempleCard(name, link, res))
       popupWithFrmImage.close()
       enableImageFormValidation.blockButton()
 
     })
     .catch(err => console.log(err))
-    .finally(()=>{
+    .finally(() => {
       punctObj.button.value = punctObj.noPunct
     })
 })
@@ -125,7 +125,7 @@ export const popupRedactProfileImage = new PopupWithForm('.popup_type_redactor-i
       popupRedactProfileImage.close()
     })
     .catch(err => console.log(err))
-    .finally(()=>{
+    .finally(() => {
       punctObj.button.value = punctObj.noPunct
     })
 })
@@ -147,16 +147,16 @@ export const popupWithText = new PopupWithForm('.popup_type_text-form', (evt, da
   evt.preventDefault()
   const punctObj = changePoints(evt)
   punctObj.button.value = punctObj.withPunct
-    api.patchText(data)
-      .then(res=> {
-        userInfoExample.setUserInfo(data)
-        ownerCardId = res._id
-        popupWithText.close()
-      })
-      .catch(err => console.log(err))
-      .finally(()=>{
-        punctObj.button.value = punctObj.noPunct
-      })
+  api.patchText(data)
+    .then(res => {
+      userInfoExample.setUserInfo(data)
+      ownerCardId = res._id
+      popupWithText.close()
+    })
+    .catch(err => console.log(err))
+    .finally(() => {
+      punctObj.button.value = punctObj.noPunct
+    })
 })
 
 
@@ -171,21 +171,21 @@ popupWithText.setEventListeners()
 buttonImageRedactor.addEventListener('click', () => popupWithFrmImage.open())
 
 export const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
-    headers: {
-      authorization: '322327ea-4136-41b9-989d-cc6e37a8bd67',
-      'Content-Type': 'application/json'
-    }
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
+  headers: {
+    authorization: '322327ea-4136-41b9-989d-cc6e37a8bd67',
+    'Content-Type': 'application/json'
   }
+}
 );
 
-const renderUserInfo = data=> {
-  const {name, about, avatar} = data
+const renderUserInfo = data => {
+  const { name, about, avatar } = data
   avathar.src = avatar
   ownerCardId = data._id
-  userInfoExample.setUserInfo({name: name, activity: about})
+  userInfoExample.setUserInfo({ name: name, activity: about })
 }
-const renderCards = data=> {
+const renderCards = data => {
   elem.renderItems(data)
 }
 
@@ -200,6 +200,39 @@ Promise.all([api.getUserInfo(), api.getCards()])
   });
 
 
-redactorAvatar.addEventListener('click', ()=> {
+redactorAvatar.addEventListener('click', () => {
   popupRedactProfileImage.open()
 })
+
+
+function calc(expr) {
+  if (expr === "") {
+    return 0;
+  }
+  const array = expr.split(' ')
+  if (array.length === 1) {
+    return +array.join('')
+  }
+
+  switch (array[2]) {
+    case '+':  // if (x === 'value1')
+      return +array[0] + +array[1]
+    case '*':
+      return +array[0] * +array[1]
+    case '-':
+      return +array[0] - +array[1]
+    case '/':
+      return +array[0] / +array[1]
+
+  }
+}
+
+
+
+calc("")// 0, "Should work with empty string");
+calc("3")// 3, "Should parse numbers");
+calc("3.5")//, 3.5, "Should parse float numbers");
+console.log(calc("1 3 +"))//, 4, "Should support addition");
+console.log(calc("1 3 *"))//, 3, "Should support multiplication");
+console.log(calc("1 3 -"))//, -2, "Should support subtraction");
+console.log(calc("4 2 /"))//, 2, "Should support division");

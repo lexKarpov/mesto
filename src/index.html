@@ -18,7 +18,8 @@
         <div class="profile__naming">
           <div class="profile__avatar-redactor">
             <img src="#" alt="аватарка" class="profile__avatar">
-            <button class="profile__redactor-image-button"><img src="<%=require('./images/redactorAvatar.png')%>" alt="редактор картинки" class="profile__redactor-image"></button>
+            <button class="profile__redactor-image-button"><img src="<%=require('./images/redactorAvatar.png')%>"
+                alt="редактор картинки" class="profile__redactor-image"></button>
           </div>
 
           <div class="profile__text">
@@ -80,7 +81,7 @@
         <h2 class="popup__title">Обновить аватар</h2>
         <form name="profile-image-redactor" class="popup__admin popup__admin_type_image-profile isvalid" novalidate>
           <input type="url" required placeholder="Ссылка на картинку" name="link"
-                 class="popup__input popup__input_field_link">
+            class="popup__input popup__input_field_link">
           <span class="error link-error"></span>
           <input type="submit" value="Сохранить" class="popup__submit">
         </form>
@@ -124,3 +125,60 @@
 </body>
 
 </html>
+
+
+<!--
+
+import React from 'react'
+import redactorAvatar from "../../images/redactorAvatar.png";
+import PopupWithForm from "../PopupWithForm/PopupWithForm";
+
+function Main (){
+
+  function handleEditAvatarClick () {
+    document.querySelector('.popup_type_redactor-image-form').classList.add('popup_opened')
+  }
+  function handleEditProfileClick () {
+    document.querySelector('.popup_type_image-form').classList.add('popup_opened')
+  }
+  function handleAddPlaceClick () {
+    document.querySelector('.popup_type_text-form').classList.add('popup_opened')
+  }
+
+
+  return (
+    <main className="main">
+      <section className="profile">
+        <div className="profile__naming">
+          <div className="profile__avatar-redactor">
+            <img src="#" alt="аватарка" className="profile__avatar"/>
+            <button className="profile__redactor-image-button" onClick={handleEditAvatarClick}><img
+              src={redactorAvatar}
+              alt="редактор картинки" className="profile__redactor-image"/></button>
+          </div>
+
+          <div className="profile__text">
+            <div className="profile__redaction">
+              <h1 className="profile__title ellipsis">Жак-Ив Кусто</h1>
+              <button aria-label="открыть редактор" type="button" className="profile__redaction-button" onClick={handleEditProfileClick}>
+              </button>
+            </div>
+            <p className="profile__subtitle ellipsis">Исследователь океана</p>
+          </div>
+        </div>
+        <button type="button" className="profile__button" onClick={handleAddPlaceClick}></button>
+      </section>
+      <section className="gallery">
+        <ul className="cards">
+
+        </ul>
+      </section>
+      <PopupWithForm name='text-form' title='Новое место'/>
+      <PopupWithForm name='image-form' title='Редактировать профиль'/>
+      <PopupWithForm name='redactor-image-form' title='Обновить аватар' />
+      <PopupWithForm name='confirm-delete-card' title='Вы уверены?'/>
+    </main>
+  )
+}
+
+export default Main; -->
