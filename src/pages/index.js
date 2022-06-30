@@ -3,19 +3,16 @@ import { FormValidator } from '../components/FormValidator.js'
 import { validObj } from '../utils/consts.js'
 import { Card } from '../components/Card.js'
 import { Section } from '../components/Section.js'
-import Popup from '../components/Popup.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import UserInfo from '../components/UserInfo.js'
 import { Api } from "../components/Api.js";
 import PopupConfirmDelete from '../components/PopoupConfirmDelete.js'
-
 export let ownerCardId = ''
 
 //Аватарка
 const avathar = document.querySelector('.profile__avatar')
 const redactorAvatar = document.querySelector('.profile__redactor-image')
-
 const popupOpenTextRedactor = document.querySelector('.profile__redaction-button');
 
 //ФОРМА--------------------------------------------------------------------
@@ -88,10 +85,10 @@ export const popupConfirmDelete = new PopupConfirmDelete('.popup_type_confirm-de
 })
 
 popupConfirmDelete.setEventListeners()
-// =========================================example of class PopupWithImage===============
+// =========================================example of class PopupWithImage===========
 export const popupWithImg = new PopupWithImage('.popup_type_image')
 popupWithImg.setEventListeners()
-//========================ОТПРАВКА КАРТОЧКИ НА СЕРВЕР И ОТРИСОВКА===========================================
+//========================ОТПРАВКА КАРТОЧКИ НА СЕРВЕР И ОТРИСОВКА=====================
 const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data) => {
   evt.preventDefault()
   const punctObj = changePoints(evt)
@@ -109,6 +106,7 @@ const popupWithFrmImage = new PopupWithForm('.popup_type_image-form', (evt, data
     .catch(err => console.log(err))
     .finally(() => {
       punctObj.button.value = punctObj.noPunct
+      popupWithFrmImage.close()
     })
 })
 popupWithFrmImage.setEventListeners()
@@ -117,11 +115,9 @@ export const popupRedactProfileImage = new PopupWithForm('.popup_type_redactor-i
   evt.preventDefault()
   const punctObj = changePoints(evt)
   punctObj.button.value = punctObj.withPunct
-
   api.changeAvatar(data.link)
     .then(res => {
       userInfoExample.changeAvatar(data.link)
-      // punctObj.button.value = punctObj.noPunct
       popupRedactProfileImage.close()
     })
     .catch(err => console.log(err))
@@ -203,36 +199,3 @@ Promise.all([api.getUserInfo(), api.getCards()])
 redactorAvatar.addEventListener('click', () => {
   popupRedactProfileImage.open()
 })
-
-
-function calc(expr) {
-  if (expr === "") {
-    return 0;
-  }
-  const array = expr.split(' ')
-  if (array.length === 1) {
-    return +array.join('')
-  }
-
-  switch (array[2]) {
-    case '+':  // if (x === 'value1')
-      return +array[0] + +array[1]
-    case '*':
-      return +array[0] * +array[1]
-    case '-':
-      return +array[0] - +array[1]
-    case '/':
-      return +array[0] / +array[1]
-
-  }
-}
-
-
-
-calc("")// 0, "Should work with empty string");
-calc("3")// 3, "Should parse numbers");
-calc("3.5")//, 3.5, "Should parse float numbers");
-console.log(calc("1 3 +"))//, 4, "Should support addition");
-console.log(calc("1 3 *"))//, 3, "Should support multiplication");
-console.log(calc("1 3 -"))//, -2, "Should support subtraction");
-console.log(calc("4 2 /"))//, 2, "Should support division");
