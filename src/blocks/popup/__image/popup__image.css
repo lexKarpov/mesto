@@ -9,11 +9,9 @@
   .popup__image{
     min-width: 200px;
     max-width: 340px;
-    height: 100%;
     object-fit: contain;
   }
 }
-
 
 @media all and (max-width: 408px) {
   .popup__image{
